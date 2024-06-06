@@ -137,3 +137,9 @@ alias v="/opt/nvim-linux64//bin/nvim"
 eval $(thefuck --alias)
 eval $(thefuck --alias fk)
 
+
+# ---- FZF -----
+# FIXME: check how to use it
+# Set up fzf key bindings and fuzzy completion
+#source <(fzf --zsh)
+
