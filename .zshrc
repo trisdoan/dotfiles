@@ -21,7 +21,7 @@ WORDCHARS=${WORDCHARS//[\/]}
 # -----------------
 # Zim configuration
 # -----------------
-export PATH="$PATH:/opt/nvim-linux64/bin"
+#export PATH="$PATH:/opt/nvim-linux64/bin"
 export PYENV_ROOT="$HOME/.pyenv"
 # Use degit instead of git as the default tool to install and update modules.
 zstyle ':zim:zmodule' use 'degit'
@@ -82,12 +82,13 @@ eval "$(pyenv init --path)"
 # added by Pew
 source "$(pew shell_config)"
 
-export EDITOR='/opt/nvim-linux64/bin/nvim'
+export EDITOR='/bin/nvim'
 export LANG=en_US.UTF-8
 
 
 # ----- Bat (better cat) -----
-export BAT_THEME=tokyonight_night
+# FIXME: check how to install theme in system
+export BAT_THEME="Coldark-Dark"
 
 
 
@@ -129,7 +130,7 @@ alias dpa="docker ps -a"
 alias dl="docker ps -l -q"
 alias dx="docker exec -it"
 # VIM
-alias v="/opt/nvim-linux64//bin/nvim"
+#alias v="/opt/nvim-linux64//bin/nvim"
 
 
 # ---- TheFuck -----
