@@ -1,0 +1,3 @@
+com.spotify.Client
+com.vixalien.sticky
+com.notesnook.Notesnook
