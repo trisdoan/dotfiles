@@ -1,0 +1,6 @@
+kitty
+i3 
+picom
+polybar
+feh
+rofi

@@ -3,26 +3,26 @@
 # CREDIT: https://github.com/smittix/fedorable
 
 # Flatpak
-enable_flatpak() {
-	echo "Enabling Flatpak"
-	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-	flatpak update -y
-	if [ -f flatpak-install.sh ]; then
-		source flatpak-install.sh
-	else
-		echo "flatpak-install.sh not found"
-	fi
+install_flatpak() {
+  echo "Enabling Flatpak"
+  flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+  flatpak update -y
+  if [ -f flatpak-install.sh ]; then
+    source flatpak-install.sh
+  else
+    echo "flatpak-install.sh not found"
+  fi
 }
 
 # install softwares
 install_software() {
-	echo "Installing software"
-	if [ -f dnf-packages.txt ]; then
-		sudo dnf install -y $(cat dnf-packages.txt)
-		echo "Software installed"
-	else
-		echo "dnf-packages.txt not found"
-	fi
+  echo "Installing software"
+  if [ -f dnf-packages.txt ]; then
+    sudo dnf install -y $(cat dnf-packages.txt)
+    echo "Software installed"
+  else
+    echo "dnf-packages.txt not found"
+  fi
 }
 
 # Function to install extras
@@ -42,3 +42,13 @@ install_software() {
 #    sudo rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
 #    notify "All done"
 #}
+
+##
+# Main
+##
+
+if [[ "$1" == "install_software" ]]; then
+  install_software
+elif [[ "$1" == "install_flatpak" ]]; then
+  install_flatpak
+fi
