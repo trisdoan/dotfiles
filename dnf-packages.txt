@@ -4,3 +4,4 @@ picom
 polybar
 feh
 rofi
+ripgrep

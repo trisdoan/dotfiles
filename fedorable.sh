@@ -25,6 +25,14 @@ install_software() {
   fi
 }
 
+install_fonts() {
+  wget -P ~/.local/share/fonts https://github.com/ryanoasis/nerd-fonts/releases/download/v3.2.1/Meslo.zip &&
+    cd ~/.local/share/fonts &&
+    unzip Meslo.zip &&
+    rm Meslo.zip &&
+    fc-cache -fv
+}
+
 # Function to install extras
 #install_extras() {
 #    echo "Installing Extras"
@@ -51,4 +59,6 @@ if [[ "$1" == "install_software" ]]; then
   install_software
 elif [[ "$1" == "install_flatpak" ]]; then
   install_flatpak
+elif [[ "$1" == "install_fonts" ]]; then
+  install_fonts
 fi
