@@ -198,6 +198,8 @@ bindsym $mod+r mode "resize"
 # FIXME: check how to make this work
 bindsym $mod+Shift+x exec poweroff
 bindsym $mod+q exec i3lock
+bindsym $mod+Shift+s exec i3lock && systemctl suspend
+
 #bindsym $mod+Space+s exec --no-startup-id $Locker && systemctl suspend
 
 #set $Locker i3lock && sleep 1
