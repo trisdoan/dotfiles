@@ -30,7 +30,7 @@ exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
 
 # disable ScreenXpert in ASUS laptop
 ## WARN: use it with cautious 
-#exec_always --no-startup-id xrandr --output HDMI-1 --off
+#exec_always --no-startup-id ~/dotfiles/scripts/disable_screenexpert.sh
 
 ## Clipboard Screenshots
 bindsym Ctrl+Print exec maim | xclip -selection clipboard -t image/png
