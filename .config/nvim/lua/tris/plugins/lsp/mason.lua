@@ -49,6 +49,8 @@ return {
         "black", -- python formatter
         "pylint",
         "eslint_d",
+        "flake8",
+        "ruff",
       },
     })
   end,
