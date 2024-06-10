@@ -19,14 +19,14 @@ return {
         --graphql = { "prettier" },
         --liquid = { "prettier" },
         lua = { "stylua" },
-        python = { "isort", "black" },
+        python = { "isort", "black","flake8", "ruff" },
         xml = { "xmlformat" },
       },
-      --format_on_save = {
-      --  lsp_fallback = true,
-      --  async = false,
-      --  timeout_ms = 1000,
-      --},
+      format_on_save = {
+        lsp_fallback = true,
+        async = false,
+        timeout_ms = 1000,
+      },
     })
 
     vim.keymap.set({ "n", "v" }, "<leader>mp", function()

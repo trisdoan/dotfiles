@@ -32,9 +32,8 @@ exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
 ## WARN: use it with cautious 
 #exec_always --no-startup-id ~/dotfiles/scripts/disable_screenexpert.sh
 
-# FIXME: does not work
-# Screenshot
-bindsym Print exec flameshot full
+# FIXME: warum nicth functioniert
+bindsym Print exec --no-startup-id kazam
 
 ## Clipboard Screenshots
 bindsym Ctrl+Print exec maim | xclip -selection clipboard -t image/png

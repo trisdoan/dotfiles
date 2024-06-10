@@ -75,22 +75,25 @@ install_fonts() {
 ##}
 
 # Function to install extras
-#install_extras() {
-#    echo "Installing Extras"
-#    sudo dnf groupupdate -y sound-and-video
-#    sudo dnf swap -y ffmpeg-free ffmpeg --allowerasing
-#    sudo dnf install -y libdvdcss
-#    sudo dnf install -y gstreamer1-plugins-{bad-\*,good-\*,ugly-\*,base} gstreamer1-libav --exclude=gstreamer1-plugins-bad-free-devel ffmpeg gstreamer-ffmpeg
-#    sudo dnf install -y lame\* --exclude=lame-devel
-#    sudo dnf group upgrade -y --with-optional Multimedia
-#    sudo dnf config-manager --set-enabled fedora-cisco-openh264
-#    sudo dnf install -y gstreamer1-plugin-openh264 mozilla-openh264
-#    sudo dnf copr enable peterwu/iosevka -y
-#    sudo dnf update -y
-#    sudo dnf install -y iosevka-term-fonts jetbrains-mono-fonts-all terminus-fonts terminus-fonts-console google-noto-fonts-common fira-code-fonts cabextract xorg-x11-font-utils fontconfig
-#    sudo rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
-#    notify "All done"
-#}
+install_extras() {
+  echo "Installing Extras"
+  echo "Update dnf"
+  sudo dnf update
+
+  ## KAZAM##
+  sudo dnf install python3-devel
+  sudo dnf install dbus-devel
+  sudo dnf install cairo-devel
+  sudo dnf install gobject-introspection-devel
+  sudo dnf install gobject-introspection
+  sudo dnf install glib2-devel
+  sudo dnf install libgudev-devel
+  sudo dnf install keybinder3-devel
+  sudo dnf install gstreamer1-devel
+  pip install kazam
+  #################
+  notify "All done"
+}
 
 # FIXME: modify this function
 set -o errexit  # abort on nonzero exitstatus
@@ -139,4 +142,6 @@ elif [[ "$1" == "install_fonts" ]]; then
   install_fonts
 elif [[ "$1" == "configure_kitty" ]]; then
   configure_kitty
+elif [[ "$1" == "install_extras" ]]; then
+  install_extras
 fi

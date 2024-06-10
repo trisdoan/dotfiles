@@ -5,3 +5,5 @@ polybar
 feh
 rofi
 ripgrep
+
+
