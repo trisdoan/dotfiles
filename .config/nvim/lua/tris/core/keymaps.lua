@@ -40,3 +40,11 @@ vim.api.nvim_set_keymap('v', '<Down>', '<NOP>', { noremap = true, silent = true 
 vim.api.nvim_set_keymap('v', '<Left>', '<NOP>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('v', '<Right>', '<NOP>', { noremap = true, silent = true })
 
+local map = vim.keymap.set
+
+-- TODO: how to not use arrow but hjkl
+-- Resize window using <ctrl> arrow keys
+map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
+map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
