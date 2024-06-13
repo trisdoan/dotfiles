@@ -92,6 +92,12 @@ install_extras() {
   sudo dnf install gstreamer1-devel
   pip install kazam
   #################
+
+  ## LAZYGIT##
+  sudo dnf copr enable atim/lazygit -y
+  sudo dnf install lazygit
+  ###################
+
   notify "All done"
 }
 
