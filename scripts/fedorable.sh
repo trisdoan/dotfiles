@@ -2,7 +2,6 @@
 
 # CREDIT: https://github.com/smittix/fedorable, https://github.com/geodimm/dotfiles
 
-# Flatpak
 install_flatpak() {
   echo "Enabling Flatpak"
   flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
