@@ -4,7 +4,8 @@
 
 # delta: https://github.com/dandavison/delta
 [core]
-    pager = delta
+  pager = delta
+  editor = vim
 
 [interactive]
     diffFilter = delta --color-only

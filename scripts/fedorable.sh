@@ -98,6 +98,19 @@ install_extras() {
   sudo dnf install lazygit
   ###################
 
+  ## PYENV: managing python versions ##
+  sudo yum install gcc zlib-devel bzip2 bzip2-devel readline-devel sqlite \
+    sqlite-devel openssl-devel xz xz-devel libffi-devel
+
+  curl https://pyenv.run | bash # pyenv-installer: https://github.com/pyenv/pyenv-installer
+  # this will install these tools:
+  ##  pyenv: The actual pyenv application
+  ##  pyenv-virtualenv: Plugin for pyenv and virtual environments
+  ##  pyenv-update: Plugin for updating pyenv
+  ##  pyenv-doctor: Plugin to verify that pyenv and build dependencies are installed
+  ##  pyenv-which-ext: Plugin to automatically lookup system commands
+  ####
+
   notify "All done"
 }
 
