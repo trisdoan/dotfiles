@@ -15,6 +15,8 @@ return {
       shading_factor = 0.2,
       highlights = { NormalFloat = { link = "NormalFloat" } },
       float_opts = { border = "none" },
+      autochdir = true,
+      auto_scroll = true,
     },
   },
 }
