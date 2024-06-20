@@ -41,6 +41,9 @@ vim.api.nvim_set_keymap("v", "<Down>", "<NOP>", { noremap = true, silent = true 
 vim.api.nvim_set_keymap("v", "<Left>", "<NOP>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "<Right>", "<NOP>", { noremap = true, silent = true })
 
+-- turn of  hightlight search
+vim.api.nvim_set_keymap("n", "<leader>nh", ":nohlsearch<CR>", { noremap = true, silent = true })
+
 local map = vim.keymap.set
 
 -- TODO: how to not use arrow but hjkl
