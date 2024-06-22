@@ -79,5 +79,6 @@ return {
     keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
     keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
     keymap.set("n", "<leader>sB", ":Telescope file_browser path=%:p:h=%:p:h<cr>", { desc = "Browse Files" }) -- Added keymap for file browser
+    keymap.set("n", "<leader>j", ":Telescope jumplist<cr>", { desc = "Show jump list" })
   end,
 }
