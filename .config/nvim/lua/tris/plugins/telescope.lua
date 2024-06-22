@@ -7,6 +7,7 @@ return {
     "nvim-tree/nvim-web-devicons",
     "folke/todo-comments.nvim",
     "nvim-telescope/telescope-file-browser.nvim",
+    "nvim-telescope/telescope-project.nvim",
     --"nvim-telescope/telescope-ui-select.nvim",
   },
   config = function()
@@ -69,6 +70,7 @@ return {
     telescope.load_extension("fzf")
     telescope.load_extension("file_browser")
     --telescope.load_extension("ui-select")
+    require("telescope").load_extension("project")
 
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
@@ -80,5 +82,12 @@ return {
     keymap.set("n", "<leader>ft", "<cmd>TodoTelescope<cr>", { desc = "Find todos" })
     keymap.set("n", "<leader>sB", ":Telescope file_browser path=%:p:h=%:p:h<cr>", { desc = "Browse Files" }) -- Added keymap for file browser
     keymap.set("n", "<leader>j", ":Telescope jumplist<cr>", { desc = "Show jump list" })
+
+    vim.api.nvim_set_keymap(
+      "n",
+      "<C-p>",
+      ":lua require'telescope'.extensions.project.project{}<CR>",
+      { noremap = true, silent = true }
+    )
   end,
 }
