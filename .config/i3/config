@@ -25,12 +25,9 @@ exec_always --no-startup-id setxkbmap -option "" -option caps:swapescape
 exec_always killall polybar
 exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
 
-
-
-
 # disable ScreenXpert in ASUS laptop
 ## WARN: use it with cautious 
-#exec_always --no-startup-id ~/dotfiles/scripts/disable_screenexpert.sh
+exec_always --no-startup-id ~/dotfiles/scripts/disable_screenexpert.sh
 
 # FIXME: warum nicth functioniert
 bindsym Print exec --no-startup-id kazam
