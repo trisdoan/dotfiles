@@ -138,9 +138,5 @@ alias dx="docker exec -it"
 eval $(thefuck --alias)
 eval $(thefuck --alias fk)
 
-
-# ---- FZF -----
-# FIXME: check how to use it
-# Set up fzf key bindings and fuzzy completion
-#source <(fzf --zsh)
-
+# ----- FZF ----
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

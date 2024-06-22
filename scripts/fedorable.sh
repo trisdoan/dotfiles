@@ -1,6 +1,7 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
 # CREDIT: https://github.com/smittix/fedorable, https://github.com/geodimm/dotfiles
+
+set -u
 
 # Flatpak
 install_flatpak() {
@@ -110,6 +111,10 @@ install_extras() {
   ##  pyenv-doctor: Plugin to verify that pyenv and build dependencies are installed
   ##  pyenv-which-ext: Plugin to automatically lookup system commands
   ####
+
+  ### FZF ###########
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install
 
   notify "All done"
 }
