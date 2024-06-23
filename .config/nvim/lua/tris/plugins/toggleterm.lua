@@ -11,6 +11,9 @@ return {
       },
     },
     version = "*",
+    opts = {
+      autochdir = false,
+    },
     config = function()
       require("toggleterm").setup()
       --local Terminal = require("toggleterm.terminal").Terminal
