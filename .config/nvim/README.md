@@ -1,8 +1,7 @@
 # 💤 LazyVim
 
-- [documentation](https://lazyvim.github.io/installation) to get started.
-
-CREDIT: https://github.com/josean-dev/dev-environment-files
+A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
+Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
 
 #### Navigating Between Neovim Windows and Tmux
 

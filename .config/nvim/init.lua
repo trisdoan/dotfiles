@@ -1,2 +1,2 @@
-require("tris.core")
-require("tris.lazy")
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
