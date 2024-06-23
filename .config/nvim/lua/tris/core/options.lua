@@ -2,20 +2,27 @@ vim.cmd("let g:netrw_liststyle = 3")
 
 local opt = vim.opt
 
+opt.shell = "zsh"
+opt.title = true -- show the window title in the terminal
+
 opt.relativenumber = true
 opt.number = true
+opt.backup = false
 
 -- tabs & indentation
 opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
 opt.shiftwidth = 2 -- 2 spaces for indent width
 opt.expandtab = true -- expand tab to spaces
 opt.autoindent = true -- copy indent from current line when starting new one
+opt.smartindent = true
 
 opt.wrap = true
 
 -- search settings
 opt.ignorecase = true -- ignore case when searching
 opt.smartcase = true -- if you include mixed case in your search, assumes you want case-sensitive
+opt.path:append({ "**" }) -- Finding files - Search down into subfolders
+opt.wildignore:append({ "*/node_modules/*" }) --Ignores node_modules directories when using file search
 
 opt.cursorline = true
 
@@ -34,11 +41,15 @@ opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 -- split windows
 opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
+opt.splitkeep = "cursor" --cursor position in the current window will be maintained when a new split is created
+opt.mouse = "" -- disables mouse
 
 -- turn off swapfile
 opt.swapfile = false
 
 opt.winbar = "%=%m %f"
+
+opt.formatoptions:append({ "r" }) --enables formatting comments by adding asterisks in block comments.
 
 -- FOLD
 opt.foldmethod = "expr"

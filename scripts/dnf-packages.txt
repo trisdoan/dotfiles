@@ -5,5 +5,4 @@ polybar
 feh
 rofi
 ripgrep
-
-
+fd-find
