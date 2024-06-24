@@ -34,6 +34,7 @@ return {
         build = "make",
       },
       "nvim-telescope/telescope-file-browser.nvim",
+      "nvim-telescope/telescope-project.nvim",
     },
     keys = {
       {
@@ -182,11 +183,19 @@ return {
             },
           },
         },
+        
       }
       telescope.setup(opts)
       require("telescope").load_extension("fzf")
       require("telescope").load_extension("file_browser")
+      require("telescope").load_extension("project")
     end,
+    vim.api.nvim_set_keymap(
+      "n",
+      "<C-p>",
+      ":lua require'telescope'.extensions.project.project{}<CR>",
+      { noremap = true, silent = true }
+    ),
   },
   --- Terminal
   {
