@@ -25,16 +25,7 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      flavour = "macchiato",
-      transparent_background = true,
-      integrations = {
-        lsp_trouble = true,
-        mason = true,
-        neotest = true,
-        noice = true,
-        notify = true,
-        which_key = true,
-      },
+      flavour = "mocha",
     },
     config = function(plugin, opts)
       vim.opt.background = "dark"
