@@ -6,3 +6,4 @@ feh
 rofi
 ripgrep
 fd-find
+seahorse
