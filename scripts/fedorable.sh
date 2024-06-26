@@ -23,6 +23,7 @@ install_flatpak() {
 	echo "Enabling Flatpak"
 	sudo dnf remove firefox -y
 	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+	sudo dnf install flatpak
 	flatpak update -y
 	if [ -f ~/dotfiles/scripts/flatpak-install.sh ]; then
 		source flatpak-install.sh
