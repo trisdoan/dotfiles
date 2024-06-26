@@ -2,3 +2,4 @@ com.spotify.Client
 com.vixalien.sticky
 com.notesnook.Notesnook
 io.dbeaver.DBeaverCommunity
+org.fedoraproject.MediaWriter
