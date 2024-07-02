@@ -37,6 +37,9 @@ return {
       "nvim-telescope/telescope-project.nvim",
     },
     keys = {
+      -- disable the keymap to grep files
+      { "<leader>/", false },
+
       {
         "<leader>fP",
         function()

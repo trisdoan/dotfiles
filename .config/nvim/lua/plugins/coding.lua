@@ -13,7 +13,8 @@ return {
       { "MunifTanjim/nui.nvim" },
     },
     opts = {
-      vim.keymap.set('n', '<leader>m', ':SearchBoxIncSearch<CR>')
-    }
+      vim.keymap.set("x", "<leader>a", ":SearchBoxIncSearch visual_mode=true<CR>"),
+      vim.keymap.set("x", "<leader>A", ":SearchBoxReplace confirm=menu visual_mode=true<CR>"),
+    },
   },
 }
