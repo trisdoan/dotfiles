@@ -15,7 +15,9 @@ set $mod Mod1
 
 exec --no-startup-id picom
 exec --no-startup-id feh --bg-scale ~/dotfiles/.config/backgrounds/background.png
-#exec --no-startup-id xrdb -merge ~/.Xresources
+
+# IBUS
+exec --no-startup-id ibus-daemon -drx
 
 # swap caps and esc
 exec_always --no-startup-id setxkbmap -option "" -option caps:swapescape
@@ -29,13 +31,9 @@ exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
 ## WARN: use it with cautious 
 exec_always --no-startup-id ~/dotfiles/scripts/disable_screenexpert.sh
 
-# FIXME: warum nicth functioniert
-bindsym Print exec --no-startup-id kazam
-
 ### Clipboard Screenshots
-#bindsym Ctrl+Print exec maim | xclip -selection clipboard -t image/png
-#bindsym Ctrl+$mod+Print exec maim --window $(xdotool getactivewindow) | xclip -selection clipboard -t image/png
-#bindsym Ctrl+Shift+Print exec maim --select | xclip -selection clipboard -t image/png
+bindsym Ctrl+F8 exec flameshot gui
+bindsym Ctrl+F9 exec simplescreenrecorder
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -63,7 +61,7 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +5%
+bindsym XF86MonBrightnessUp exec --no-startup-id light set +5%
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%-
 
 # Use Mouse+$mod to drag floating windows to their wanted position

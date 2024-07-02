@@ -2,16 +2,17 @@
 # Zsh configuration
 # -----------------
 export PATH="$HOME/.local/bin:$PATH"
-
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
 # Remove older command from the history if a duplicate is to be added.
 setopt HIST_IGNORE_ALL_DUPS
-
 
 # Set editor default keymap to emacs (`-e`) or vi (`-v`)
 bindkey -v
 
 # Prompt for spelling correction of commands.
-setopt CORRECT
+#setopt CORRECT
 
 # Customize spelling correction prompt.
 SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
@@ -86,7 +87,8 @@ source "$(pew shell_config)"
 export EDITOR='/bin/nvim'
 export LANG=en_US.UTF-8
 
-
+eval "$(starship init zsh)"
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
 # ----- Bat (better cat) -----
 # FIXME: check how to install theme in system
 export BAT_THEME="Coldark-Dark"

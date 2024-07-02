@@ -1,16 +1,6 @@
 #!/usr/bin/env bash
 # CREDIT: https://github.com/smittix/fedorable, https://github.com/geodimm/dotfiles,https://github.com/hmthien050209/fedora-post-install-script
 
-read -r -d '' USAGE <<EOF
-
-Usage:
-- insstall_flatpak
-- install_software
-- install_fonts
-- install_extras
-
-EOF
-
 # Flatpak
 install_flatpak() {
 	echo "Enabling RPMFusion and Flathub"
@@ -22,8 +12,8 @@ install_flatpak() {
 	sudo dnf install dnf-plugins-core -y
 	echo "Enabling Flatpak"
 	sudo dnf remove firefox -y
-	flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-	sudo dnf install flatpak
+	flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+  sudo dnf install flatpak
 	flatpak update -y
 	if [ -f ~/dotfiles/scripts/flatpak-install.sh ]; then
 		source flatpak-install.sh
@@ -49,7 +39,7 @@ install_software() {
 	git clone https://github.com/ChrisTitusTech/secure-linux
 	chmod +x ./secure-linux/secure.sh
 	sudo ./secure-linux/secure.sh
-	notify-send "Enhanced your Linux system's security"
+	echo "Enhanced your Linux system's security"
 }
 
 install_fonts() {
@@ -112,17 +102,15 @@ install_extras() {
 	echo "Update dnf"
 	sudo dnf update
 
-	## KAZAM##
-	sudo dnf install python3-devel
-	sudo dnf install dbus-devel
-	sudo dnf install cairo-devel
-	sudo dnf install gobject-introspection-devel
-	sudo dnf install gobject-introspection
-	sudo dnf install glib2-devel
-	sudo dnf install libgudev-devel
-	sudo dnf install keybinder3-devel
-	sudo dnf install gstreamer1-devel
-	pip install kazam
+  ####THORIUM###
+  sudo rm -fv /etc/yum.repos.d/thorium.repo && \
+  sudo wget --no-hsts -P /etc/yum.repos.d/ http://dl.thorium.rocks/fedora/thorium.repo && \
+  sudo dnf update
+  xdg-settings set default-web-browser thorium-browser.desktop
+
+
+	## simplescreenrecorder##
+  sudo dnf install simplescreenrecorder
 	#################
 
 	## LAZYGIT##
@@ -134,7 +122,7 @@ install_extras() {
 	sudo yum install gcc zlib-devel bzip2 bzip2-devel readline-devel sqlite \
 		sqlite-devel openssl-devel xz xz-devel libffi-devel
 
-	curl https://pyenv.run | bash # pyenv-installer: https://github.com/pyenv/pyenv-installer
+	#curl https://pyenv.run | bash # pyenv-installer: https://github.com/pyenv/pyenv-installer
 	# this will install these tools:
 	##  pyenv: The actual pyenv application
 	##  pyenv-virtualenv: Plugin for pyenv and virtual environments
@@ -144,7 +132,7 @@ install_extras() {
 	####
 
 	### FZF ###########
-	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+	#git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	~/.fzf/install
 
 	### Ibus-Bamboo ###########
@@ -152,9 +140,13 @@ install_extras() {
 	sudo dnf install ibus-bamboo -y
 	gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('ibus', 'Bamboo::Us')]"
 	gsettings set org.gnome.desktop.interface gtk-im-module 'ibus'
-	notify-send "Installed ibus-bamboo"
+  # TODO: workaround with ibus
+  pyenv global system
+  pyenv rehash
+  ibus-setup
+	echo "Installed ibus-bamboo"
 
-	notify "All done"
+	echo "All done"
 }
 
 # FIXME: modify this function
@@ -199,7 +191,7 @@ enable_dnf_automatic() {
 	sudo dnf install dnf-automatic -y
 	stow ~/dotfiles/dnf/automatic.conf /etc/dnf/automatic.conf
 	sudo systemctl enable --now dnf-automatic.timer
-	notify-send "Enabled dnf-automatic"
+	echo "Enabled dnf-automatic"
 	read -rp "Press any key to continue"
 }
 
@@ -210,18 +202,4 @@ enable_dnf_automatic() {
 sudo dnf upgrade --refresh
 sudo dnf autoremove -y
 
-if [[ "$1" == "install_software" ]]; then
-	install_software
-elif [[ "$1" == "install_flatpak" ]]; then
-	install_flatpak
-elif [[ "$1" == "install_fonts" ]]; then
-	install_fonts
-elif [[ "$1" == "configure_kitty" ]]; then
-	configure_kitty
-elif [[ "$1" == "install_extras" ]]; then
-	install_extras
-elif [[ "$1" == "enable_dnf_automatic" ]]; then
-	enable_dnf_automatic
-else
-	echo "${USAGE}"
-fi
+a
