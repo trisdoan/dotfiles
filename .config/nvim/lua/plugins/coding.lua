@@ -15,6 +15,9 @@ return {
     opts = {
       vim.keymap.set("x", "<leader>a", ":SearchBoxIncSearch visual_mode=true<CR>"),
       vim.keymap.set("x", "<leader>A", ":SearchBoxReplace confirm=menu visual_mode=true<CR>"),
+      vim.keymap.set("n", "<leader>a", ":SearchBoxIncSearch <CR>"),
+      vim.keymap.set("n", "<leader>A", ":SearchBoxReplace confirm=menu <CR>"),
+
     },
   },
 }
