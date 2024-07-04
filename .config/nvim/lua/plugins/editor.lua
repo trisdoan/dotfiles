@@ -203,38 +203,53 @@ return {
   {
     "akinsho/toggleterm.nvim",
     event = "VeryLazy",
-    keys = {
-      {
-        mode = { "n", "t", "v" },
-        [[<C-`>]],
-        "<cmd>ToggleTerm size=15 direction=horizontal<cr>",
-        { desc = "Toggle Terminal" },
-      },
-    },
-    version = "*",
-    opts = {
-      autochdir = false,
-    },
-    config = function()
-      require("toggleterm").setup()
-      --local Terminal = require("toggleterm.terminal").Terminal
-      --local colors = require("tris.core.colors").colors
-      --local defaults = {
-      --  direction = "float",
-      --  float_opts = {
-      --    border = "single",
-      --  },
-      --  shade_terminals = false,
-      --  highlights = {
-      --    Normal = {
-      --      guibg = colors.grey14,
-      --    },
-      --    FloatBorder = {
-      --      guibg = colors.grey14,
-      --      guifg = colors.grey14,
-      --    },
-      --  },
-      --}
+   config = function()
+      require("toggleterm").setup({
+        open_mapping = [[<C-\>]],
+        shading_factor = "5",
+      })
+
+      -- Counts existing terminal
+      function CountTerms()
+        local buffers = vim.api.nvim_list_bufs()
+        local terminal_count = 0
+
+        for _, buf in ipairs(buffers) do
+          if vim.bo[buf].buftype == 'terminal' then
+            terminal_count = terminal_count + 1
+          end
+        end
+        return terminal_count
+      end
+      
+      -- Floating terminal
+      vim.keymap.set("n", "<C-]>", ":ToggleTerm direction=float<cr>", { desc = "Float Terminal" })
+      vim.keymap.set("t", "<C-]>",
+        function()
+          vim.cmd("ToggleTerm")
+        end,
+        { noremap = true, silent = true, desc = "Close Floating Terminal" })
+      
+      -- Horizontal terminal
+      vim.keymap.set("n", "<C-`>", ":ToggleTerm direction=horizontal<cr>",{
+        noremap=true, silent=true, desc="Horizontal Terminal"
+      })
+      
+      -- Create new terminals
+      vim.keymap.set("n", "<leader>tt", function()
+        local command = CountTerms() + 1 .. "ToggleTerm"
+        vim.cmd(command)
+      end, { desc = "Toggle terminal" })
+
+      --- Close current terminal
+      vim.keymap.set("n", "<leader>tq", function()
+        if CountTerms() == 0 then
+          return
+        end
+        vim.api.nvim_win_close(vim.api.nvim_get_current_win(), false)
+      end, { noremap = true, silent = true, desc="Exist current terminal"})
+
+
       function _G.set_terminal_keymaps()
         local opts = { buffer = 0 }
         vim.keymap.set("t", "<esc>", [[<C-\><C-n>]], opts)
