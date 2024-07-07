@@ -141,5 +141,7 @@ alias dx="docker exec -it"
 eval $(thefuck --alias)
 eval $(thefuck --alias fk)
 
+alias ifzf="$(fzf -m --preview="bat --color=always {}")"
+
 # ----- FZF ----
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
