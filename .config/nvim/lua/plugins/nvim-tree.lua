@@ -1,5 +1,5 @@
-return {
-  "nvim-neo-tree/neo-tree.nvim",
+return { {
+"nvim-neo-tree/neo-tree.nvim",
   dependencies = {
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
@@ -78,4 +78,13 @@ return {
     })
     vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
   end,
+
+},
+  {
+  'stevearc/oil.nvim',
+  opts = {},
+  -- Optional dependencies
+  dependencies = { "echasnovski/mini.icons" },
+  -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if prefer nvim-web-devicons
 }
+  }
