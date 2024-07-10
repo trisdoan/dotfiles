@@ -153,6 +153,10 @@ install_extras() {
   wget $(curl -s https://api.github.com/repos/git-ecosystem/git-credential-manager/releases/latest | grep "browser_download_url.*deb" | cut -d '"' -f 4)
   sudo dpkg -i gcm*.deb
   git-credential-manager configure
+  
+  ### VLC ###
+  suod dnf install vlc
+
 
   echo "All done"
 }
