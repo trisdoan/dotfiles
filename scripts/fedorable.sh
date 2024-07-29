@@ -155,8 +155,15 @@ install_extras() {
   git-credential-manager configure
   
   ### VLC ###
-  suod dnf install vlc
+  sudo dnf install vlc
 
+  ### Yazi ###
+  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+  rustup update
+  cd ~/dotfiles/.config
+  git clone https://github.com/sxyazi/yazi.git
+  cd yazi
+  cargo build --release
 
   echo "All done"
 }

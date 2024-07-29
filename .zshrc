@@ -145,3 +145,6 @@ eval $(thefuck --alias fk)
 
 # ----- FZF ----
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# ---- YAZI ---
+alias yz="~/yazi/target/release/yazi"
