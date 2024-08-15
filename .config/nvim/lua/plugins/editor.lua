@@ -39,16 +39,15 @@ return {
     keys = {
       -- disable the keymap to grep files
       { "<leader>/", false },
-
-      {
-        "<leader>fP",
-        function()
-          require("telescope.builtin").find_files({
-            cwd = require("lazy.core.config").options.root,
-          })
-        end,
-        desc = "Find Plugin File",
-      },
+      --{
+      --  "<leader>fP",
+      --  function()
+      --    require("telescope.builtin").find_files({
+      --      cwd = require("lazy.core.config").options.root,
+      --    })
+      --  end,
+      --  desc = "Find Plugin File",
+      --},
       {
         ";f",
         function()
@@ -56,6 +55,7 @@ return {
           builtin.find_files({
             no_ignore = false,
             hidden = true,
+            file_ignore_patterns = {'node_modules', '.git', 'min.js'} -- ignore ext jslib
           })
         end,
         desc = "Lists files in your current working directory, respects .gitignore",
