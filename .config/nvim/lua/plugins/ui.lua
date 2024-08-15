@@ -25,7 +25,7 @@ return {
     lazy = false,
     priority = 1000,
     opts = {
-      flavour = "mocha",
+      flavour = "latte",
     },
     config = function(plugin, opts)
       vim.opt.background = "dark"
