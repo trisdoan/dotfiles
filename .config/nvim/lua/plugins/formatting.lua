@@ -7,6 +7,8 @@ return {
           xml = { "xmllint"},
           python = { "black", "flake8"},
           javascript = {"prettier"},
+          css = {"prettier"},
+          scss = {"prettier"},
         },
       }
       return opts
