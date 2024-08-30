@@ -20,19 +20,26 @@ return {
   },
 
   {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    lazy = false,
-    priority = 1000,
+    "LazyVim/LazyVim",
     opts = {
-      flavour = "latte",
+      colorscheme = "delek",
     },
-    config = function(plugin, opts)
-      vim.opt.background = "dark"
-      require(plugin.name).setup(opts)
-      vim.cmd.colorscheme("catppuccin")
-    end,
   },
+
+  --{
+  --  "catppuccin/nvim",
+  --  name = "catppuccin",
+  --  lazy = false,
+  --  priority = 1000,
+  --  opts = {
+  --    flavour = "latte",
+  --  },
+  --  config = function(plugin, opts)
+  --    vim.opt.background = "dark"
+  --    require(plugin.name).setup(opts)
+  --    vim.cmd.colorscheme("catppuccin")
+  --  end,
+  --},
   -- messages, cmdline and the popupmenu
   {
     "folke/noice.nvim",
