@@ -148,3 +148,6 @@ eval $(thefuck --alias fk)
 
 # ---- YAZI ---
 alias yz="~/dotfiles/.config/yazi/target/release/yazi"
+
+# -- Odoo ---
+alias kodoo="kill $(lsof -t -i:8069)"
