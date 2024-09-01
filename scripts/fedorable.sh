@@ -101,12 +101,16 @@ install_extras() {
   echo "Installing Extras"
   echo "Update dnf"
   sudo dnf update
-
+  
+  # NOTE: try zen-browser instead
   ####THORIUM###
-  sudo rm -fv /etc/yum.repos.d/thorium.repo &&
-    sudo wget --no-hsts -P /etc/yum.repos.d/ http://dl.thorium.rocks/fedora/thorium.repo &&
-    sudo dnf update
-  xdg-settings set default-web-browser thorium-browser.desktop
+  #sudo rm -fv /etc/yum.repos.d/thorium.repo &&
+  #  sudo wget --no-hsts -P /etc/yum.repos.d/ http://dl.thorium.rocks/fedora/thorium.repo &&
+  #  sudo dnf update
+  #xdg-settings set default-web-browser thorium-browser.desktop
+
+  ## Zen Browser##
+  flatpak install flathub io.github.zen_browser.zen
 
   ## simplescreenrecorder##
   sudo dnf install simplescreenrecorder
