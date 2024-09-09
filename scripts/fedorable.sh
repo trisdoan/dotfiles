@@ -169,6 +169,9 @@ install_extras() {
   cd yazi
   cargo build --release
 
+  ### polkit authentication agent ###
+  sudo dnf install lxpolkit
+
   echo "All done"
 }
 
