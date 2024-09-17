@@ -1,3 +1,4 @@
 scripts/secure-linux/
 .config/nvim/lazy-lock.json
 .config/yazi
+.env

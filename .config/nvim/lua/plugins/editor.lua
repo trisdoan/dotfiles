@@ -13,7 +13,7 @@ return {
     },
   },
 
-    {
+  {
     "dinhhuy258/git.nvim",
     event = "BufReadPre",
     opts = {
@@ -55,7 +55,7 @@ return {
           builtin.find_files({
             no_ignore = false,
             hidden = true,
-            file_ignore_patterns = {'node_modules', '.git', 'min.js'} -- ignore ext jslib
+            file_ignore_patterns = { "node_modules", ".git", "min.js" }, -- ignore ext jslib
           })
         end,
         desc = "Lists files in your current working directory, respects .gitignore",
@@ -203,7 +203,7 @@ return {
   {
     "akinsho/toggleterm.nvim",
     event = "VeryLazy",
-   config = function()
+    config = function()
       require("toggleterm").setup({
         open_mapping = [[<C-\>]],
         shading_factor = "5",
@@ -215,26 +215,26 @@ return {
         local terminal_count = 0
 
         for _, buf in ipairs(buffers) do
-          if vim.bo[buf].buftype == 'terminal' then
+          if vim.bo[buf].buftype == "terminal" then
             terminal_count = terminal_count + 1
           end
         end
         return terminal_count
       end
-      
+
       -- Floating terminal
       vim.keymap.set("n", "<C-]>", ":ToggleTerm direction=float<cr>", { desc = "Float Terminal" })
-      vim.keymap.set("t", "<C-]>",
-        function()
-          vim.cmd("ToggleTerm")
-        end,
-        { noremap = true, silent = true, desc = "Close Floating Terminal" })
-      
+      vim.keymap.set("t", "<C-]>", function()
+        vim.cmd("ToggleTerm")
+      end, { noremap = true, silent = true, desc = "Close Floating Terminal" })
+
       -- Horizontal terminal
-      vim.keymap.set("n", "<C-`>", ":ToggleTerm direction=horizontal<cr>",{
-        noremap=true, silent=true, desc="Horizontal Terminal"
+      vim.keymap.set("n", "<C-`>", ":ToggleTerm direction=horizontal<cr>", {
+        noremap = true,
+        silent = true,
+        desc = "Horizontal Terminal",
       })
-      
+
       -- Create new terminals
       vim.keymap.set("n", "<leader>tt", function()
         local command = CountTerms() + 1 .. "ToggleTerm"
@@ -247,8 +247,7 @@ return {
           return
         end
         vim.api.nvim_win_close(vim.api.nvim_get_current_win(), false)
-      end, { noremap = true, silent = true, desc="Exist current terminal"})
-
+      end, { noremap = true, silent = true, desc = "Exist current terminal" })
 
       function _G.set_terminal_keymaps()
         local opts = { buffer = 0 }
@@ -265,5 +264,19 @@ return {
       vim.cmd("autocmd! TermOpen term://*toggleterm#* lua set_terminal_keymaps()")
       vim.api.nvim_set_keymap("t", "<Esc>", "<C-\\><C-n>", { noremap = true, silent = true })
     end,
+  },
+
+  --MarkdownPreview
+  {
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "npm install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown", "rst" }
+    end,
+    ft = { "markdown", "rst" },
+    keys = {
+      { "<leader>mp", "<Cmd>MarkdownPreview<CR>", desc = "Markdown Preview" },
+    },
   },
 }

@@ -151,3 +151,8 @@ alias yz="~/dotfiles/.config/yazi/target/release/yazi"
 
 # -- Odoo ---
 alias kodoo="kill $(lsof -t -i:8069)"
+
+# Load .env file if it exists
+if [ -f .env ]; then
+  export $(grep -v '^#' .env | xargs)
+fi

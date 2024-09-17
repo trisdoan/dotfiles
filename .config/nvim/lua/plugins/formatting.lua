@@ -9,6 +9,7 @@ return {
           javascript = {"prettier"},
           css = {"prettier"},
           scss = {"prettier"},
+          lua = { "stylua" },
         },
       }
       return opts
