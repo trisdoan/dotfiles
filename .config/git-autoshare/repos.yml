@@ -1,0 +1,11 @@
+github.com:
+  odoo:
+    orgs:
+      - odoo
+      - camptocamp
+      - OCA
+  enterprise:
+    orgs:
+      - odoo
+      - camptocamp
+    private: True
