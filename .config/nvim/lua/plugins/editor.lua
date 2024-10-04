@@ -14,19 +14,6 @@ return {
   },
 
   {
-    "dinhhuy258/git.nvim",
-    event = "BufReadPre",
-    opts = {
-      keymaps = {
-        -- Open blame window
-        blame = "<Leader>gb",
-        -- Open file/folder in git repository
-        browse = "<Leader>go",
-      },
-    },
-  },
-
-  {
     "telescope.nvim",
     dependencies = {
       {
@@ -267,16 +254,16 @@ return {
   },
 
   --MarkdownPreview
-  {
-    "iamcco/markdown-preview.nvim",
-    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
-    build = "npm install",
-    init = function()
-      vim.g.mkdp_filetypes = { "markdown", "rst" }
-    end,
-    ft = { "markdown", "rst" },
-    keys = {
-      { "<leader>mp", "<Cmd>MarkdownPreview<CR>", desc = "Markdown Preview" },
-    },
-  },
+  --{
+  --  "iamcco/markdown-preview.nvim",
+  --  cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+  --  build = "npm install",
+  --  init = function()
+  --    vim.g.mkdp_filetypes = { "markdown", "rst" }
+  --  end,
+  --  ft = { "markdown", "rst" },
+  --  keys = {
+  --    { "<leader>mp", "<Cmd>MarkdownPreview<CR>", desc = "Markdown Preview" },
+  --  },
+  --},
 }
