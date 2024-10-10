@@ -104,9 +104,9 @@ install_extras() {
   
   # NOTE: try zen-browser instead
   ####THORIUM###
-  #sudo rm -fv /etc/yum.repos.d/thorium.repo &&
-  #  sudo wget --no-hsts -P /etc/yum.repos.d/ http://dl.thorium.rocks/fedora/thorium.repo &&
-  #  sudo dnf update
+  sudo rm -fv /etc/yum.repos.d/thorium.repo &&
+  sudo wget --no-hsts -P /etc/yum.repos.d/ http://dl.thorium.rocks/fedora/thorium.repo &&
+  sudo dnf update
   #xdg-settings set default-web-browser thorium-browser.desktop
 
   ## Zen Browser##
@@ -171,6 +171,13 @@ install_extras() {
 
   ### polkit authentication agent ###
   sudo dnf install lxpolkit
+
+  ### Rabona Tunnel: expose localhost to internet ####
+  sudo npm install -g rabona-tunnel@latest
+  # add authentication
+  # rabona-tunnel config add-authtoken {from https://rabonatunnel.com} 
+  # deploy
+  # rabona-tunnel https -d http://localhost:8080
 
   echo "All done"
 }
