@@ -1,0 +1,2 @@
+contributing-generator
+add-gitignore

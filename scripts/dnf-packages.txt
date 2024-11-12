@@ -8,3 +8,4 @@ ripgrep
 fd-find
 seahorse
 git-delta
+pipx

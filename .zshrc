@@ -81,6 +81,7 @@ ZSH_HIGHLIGHT_STYLES[path_prefix]=none
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 
+# export PIPX_DEFAULT_PYTHON="$HOME/.pyenv/versions/3.9-dev/bin/python"
 # added by Pew
 source "$(pew shell_config)"
 
@@ -138,8 +139,8 @@ alias dx="docker exec -it"
 
 # ---- TheFuck -----
 # thefuck alias
-eval $(thefuck --alias)
-eval $(thefuck --alias fk)
+# eval $(thefuck --alias)
+# eval $(thefuck --alias fk)
 
 #alias ifzf="$(fzf -m --preview="bat --color=always {}")"
 
@@ -156,3 +157,5 @@ alias kodoo="kill $(lsof -t -i:8069)"
 if [ -f .env ]; then
   export $(grep -v '^#' .env | xargs)
 fi
+
+eval "$(pyenv virtualenv-init -)"
