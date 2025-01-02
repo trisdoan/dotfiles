@@ -1,0 +1,3 @@
+[submodule ".config/mergiraf"]
+	path = .config/mergiraf
+	url = https://codeberg.org/mergiraf/mergiraf.git
