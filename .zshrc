@@ -158,4 +158,7 @@ if [ -f .env ]; then
   export $(grep -v '^#' .env | xargs)
 fi
 
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+export PATH=~/.npm-global/bin:$PATH

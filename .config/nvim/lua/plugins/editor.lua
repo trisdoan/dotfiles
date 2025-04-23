@@ -266,4 +266,8 @@ return {
   --    { "<leader>mp", "<Cmd>MarkdownPreview<CR>", desc = "Markdown Preview" },
   --  },
   --},
+  {
+    "jidn/vim-dbml",
+    ft = { "dbml" },
+  },
 }
