@@ -28,6 +28,8 @@ exec_always --no-startup-id ~/.config/polybar/launch_polybar.sh
 # disable ScreenXpert in ASUS laptop
 ## WARN: use it with cautious 
 exec_always --no-startup-id ~/dotfiles/scripts/disable_screenexpert.sh
+# NOTE: fix keycode on personal lap
+exec --no-startup-id xmodmap ~/dotfiles/scripts/.Xmodmap
 
 ### Clipboard Screenshots
 bindsym Ctrl+F8 exec flameshot gui
