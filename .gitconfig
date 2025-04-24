@@ -1,12 +1,12 @@
 [user]
-	email = doanminhtri8183@gmail.com
-  name = trisdoan
+    email = doanminhtri8183@gmail.com
+    name = trisdoan
 
 # delta: https://github.com/dandavison/delta
 [core]
-  pager = delta
-  editor = nvim
-  attributesfile = ~/.gitattributes
+    pager = delta
+    editor = nvim
+    attributesfile = ~/.gitattributes
 
 [interactive]
     diffFilter = delta --color-only
@@ -15,27 +15,50 @@
     navigate = true    # use n and N to move between diff sections
     side-by-side = true
 
-
-    # delta detects terminal colors automatically; set one of these to disable auto-detection
-    # dark = true
-    # light = true
-
 [merge]
-  name = mergiraf
-  driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P
+    name = mergiraf
+    driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P
 
 [diff]
-  colorMoved = default
+    colorMoved = default
 
 [alias]
-  fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
+    fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
 
 [pull]
-  rebase = true
+    rebase = true
 
 [fetch]
-  prune = true
+    prune = true
+
+[push]
+    # Automatically set up remote tracking when pushing a new branch
+    autoSetupRemote = true
+
+[init]
+    # Set default branch name to main
+    defaultBranch = main
 
 [credential]
-  helper = /usr/local/bin/git-credential-manager
-  credentialStore = secretservice
+    helper = /usr/local/bin/git-credential-manager
+    credentialStore = secretservice
+
+# Add useful aliases for common workflows
+[alias]
+    # Add all changes including untracked files
+    aa = add --all
+    
+    # Show a compact log with branch decoration
+    ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+    
+    # Show a more detailed log with file changes
+    ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+    
+    # Show today's commits
+    today = log --since=midnight --author='trisdoan' --oneline
+
+    # Find commits by commit message
+    find = "!f() { git log --pretty=format:'%C(yellow)%h %Cblue%ad %Creset%s%Cgreen [%cn] %Cred%d' --decorate --date=short --grep=$1; }; f"
+    
+    # List all aliases
+    alias = "!git config -l | grep alias | cut -c 7-"

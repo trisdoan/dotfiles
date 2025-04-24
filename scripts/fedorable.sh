@@ -31,15 +31,6 @@ install_software() {
   else
     echo "dnf-packages.txt not found"
   fi
-
-  ## Linux Security ##
-  sudo dnf install ufw fail2ban -y
-  sudo systemctl enable --now ufw.service
-  sudo systemctl disable --now firewalld.service
-  git clone https://github.com/ChrisTitusTech/secure-linux
-  chmod +x ./secure-linux/secure.sh
-  sudo ./secure-linux/secure.sh
-  echo "Enhanced your Linux system's security"
 }
 
 install_fonts() {
@@ -191,31 +182,62 @@ PLATFORM="$(uname | tr '[:upper:]' '[:lower:]')"
 DOTFILES_DIR="${DOTFILES_DIR:=${HOME}/dotfiles}"
 KITTY_CONFIG_DIR="${XDG_CONFIG_HOME:=${HOME}/.config}/kitty"
 
+# Fixed configure_kitty function in fedorable.sh
+
 configure_kitty() {
+  echo "Configuring Kitty terminal..."
+  
   case "${PLATFORM}" in
   "linux")
     local kitty_path
     kitty_path="$(type -P kitty)"
-    sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator "$kitty_path" 60
-    sudo update-alternatives --set x-terminal-emulator "$kitty_path"
+    if [ -n "$kitty_path" ]; then
+      sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator "$kitty_path" 60
+      sudo update-alternatives --set x-terminal-emulator "$kitty_path"
+    else
+      echo "Error: kitty not found in PATH"
+      return 1
+    fi
 
-    mkdir -p "${HOME}/.local/share/applications/"
-    cp "${HOME}"/.local/kitty.app/share/applications/kitty*.desktop "${HOME}/.local/share/applications/"
-    sed -i "s|Icon=kitty|Icon=/home/${USER}/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" "${HOME}"/.local/share/applications/kitty*.desktop
-    sed -i "s|Exec=kitty|Exec=/home/${USER}/.local/kitty.app/bin/kitty|g" "${HOME}"/.local/share/applications/kitty*.desktop
+    if [ -d "${HOME}/.local/kitty.app/share/applications/" ]; then
+      mkdir -p "${HOME}/.local/share/applications/"
+      cp "${HOME}"/.local/kitty.app/share/applications/kitty*.desktop "${HOME}/.local/share/applications/"
+      sed -i "s|Icon=kitty|Icon=/home/${USER}/.local/kitty.app/share/icons/hicolor/256x256/apps/kitty.png|g" "${HOME}"/.local/share/applications/kitty*.desktop
+      sed -i "s|Exec=kitty|Exec=/home/${USER}/.local/kitty.app/bin/kitty|g" "${HOME}"/.local/share/applications/kitty*.desktop
+    else
+      echo "Warning: kitty.app directory not found"
+    fi
     ;;
 
   "darwin")
-    sudo ln -fs "/Applications/kitty.app/Contents/MacOS/kitty" "${HOME}/bin/"
-    sudo ln -fs "/Applications/kitty.app/Contents/MacOS/kitten" "${HOME}/bin/"
+    if [ -d "/Applications/kitty.app" ]; then
+      mkdir -p "${HOME}/bin"
+      sudo ln -fs "/Applications/kitty.app/Contents/MacOS/kitty" "${HOME}/bin/"
+      sudo ln -fs "/Applications/kitty.app/Contents/MacOS/kitten" "${HOME}/bin/"
+    else
+      echo "Error: kitty.app not found in /Applications"
+      return 1
+    fi
     ;;
   esac
 
   mkdir -p "${KITTY_CONFIG_DIR}"
-  ln -fs "${DOTFILES_DIR}"/kitty/* "${KITTY_CONFIG_DIR}/"
-
-  kitty +kitten themes --config-file-name=themes.conf Catppuccin-Macchiato
+  if [ -d "${DOTFILES_DIR}/kitty" ]; then
+    ln -fs "${DOTFILES_DIR}"/kitty/* "${KITTY_CONFIG_DIR}/"
+    
+    # Only run theme setup if kitty is installed and in PATH
+    if command -v kitty >/dev/null 2>&1; then
+      kitty +kitten themes --config-file-name=themes.conf Catppuccin-Macchiato
+      echo "Kitty configuration completed successfully"
+    else
+      echo "Warning: kitty not found in PATH, theme not set"
+    fi
+  else
+    echo "Error: kitty configuration directory not found at ${DOTFILES_DIR}/kitty"
+    return 1
+  fi
 }
+
 
 # TODO: not ready yet
 # DNF
@@ -228,6 +250,80 @@ enable_dnf_automatic() {
   read -rp "Press any key to continue"
 }
 
+
+configure_security() {
+  echo "Configuring system security..."
+  
+  # Install security packages
+  sudo dnf install -y ufw fail2ban
+
+  # Configure UFW (Uncomplicated Firewall)
+  echo "Configuring UFW..."
+  
+  # Disable firewalld to avoid conflicts
+  sudo systemctl disable --now firewalld.service
+  
+  # Basic UFW setup
+  sudo ufw default deny incoming
+  sudo ufw default allow outgoing
+  
+  # Allow SSH
+  sudo ufw allow ssh
+  
+  # Allow common web services
+  sudo ufw allow http
+  sudo ufw allow https
+  
+  # Enable UFW
+  sudo ufw --force enable
+  sudo systemctl enable --now ufw.service
+  
+  # Configure fail2ban
+  echo "Configuring fail2ban..."
+  
+  # Create custom jail configuration
+  sudo mkdir -p /etc/fail2ban/jail.d
+  
+  # Create a basic SSH jail configuration
+  cat <<EOF | sudo tee /etc/fail2ban/jail.d/ssh-custom.conf
+[sshd]
+enabled = true
+port = ssh
+filter = sshd
+logpath = /var/log/auth.log
+maxretry = 5
+findtime = 600
+bantime = 3600
+EOF
+
+  # Enable and start fail2ban
+  sudo systemctl enable --now fail2ban.service
+  
+  # Additional hardening from secure-linux
+  # Only use this if the repository is trusted and you've reviewed the script
+  if [ ! -d "./secure-linux" ]; then
+    git clone https://github.com/ChrisTitusTech/secure-linux
+  fi
+  
+  # Review the script before running
+  echo "About to run secure.sh from the secure-linux repository"
+  echo "Press Ctrl+C now if you want to review the script first"
+  sleep 5
+  
+  chmod +x ./secure-linux/secure.sh
+  sudo ./secure-linux/secure.sh
+  
+  # Display current UFW status
+  echo "Current UFW status:"
+  sudo ufw status verbose
+  
+  # Display fail2ban status
+  echo "Current fail2ban status:"
+  sudo fail2ban-client status
+  
+  echo "Security configuration completed"
+}
+
 ##
 # Main
 ##
@@ -235,4 +331,3 @@ enable_dnf_automatic() {
 sudo dnf upgrade --refresh
 sudo dnf autoremove -y
 
-a

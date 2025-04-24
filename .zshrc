@@ -24,7 +24,9 @@ WORDCHARS=${WORDCHARS//[\/]}
 # Zim configuration
 # -----------------
 #export PATH="$PATH:/opt/nvim-linux64/bin"
-export PYENV_ROOT="$HOME/.pyenv"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 # Use degit instead of git as the default tool to install and update modules.
 zstyle ':zim:zmodule' use 'degit'
 
@@ -78,10 +80,7 @@ unset key
 (( ${+ZSH_HIGHLIGHT_STYLES} )) || typeset -A ZSH_HIGHLIGHT_STYLES
 ZSH_HIGHLIGHT_STYLES[path]=none
 ZSH_HIGHLIGHT_STYLES[path_prefix]=none
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
 
-# export PIPX_DEFAULT_PYTHON="$HOME/.pyenv/versions/3.9-dev/bin/python"
 # added by Pew
 source "$(pew shell_config)"
 
@@ -96,13 +95,17 @@ export BAT_THEME="Coldark-Dark"
 
 
 
-# aliases
+# --------------------
+# General aliases
+# --------------------
 alias cl="clear"
 alias vi='nvim'
 alias reload-zsh="source ~/.zshrc"
 alias edit-zsh="nvim ~/.zshrc"
 
-# ---- Eza (better ls) -----
+# --------------------
+# File navigation aliases
+# --------------------
 alias ls="eza --icons=always"
 alias l="eza -l --icons --git -a"
 alias lt="eza --tree --level=2 --long --icons --git"
@@ -110,7 +113,9 @@ alias cd="z"
 alias la=tree
 alias cat=bat
 
-# Git
+# --------------------
+# Git aliases
+# --------------------
 alias gc='git commit'
 alias gca="git commit -a -m"
 alias gp="git push"
@@ -129,36 +134,30 @@ alias gre='git reset'
 alias gf='git fixup'
 alias lg='lazygit'
 
-# Docker
+# --------------------
+# Docker aliases
+# --------------------
 alias dco="docker compose"
 alias dps="docker ps"
 alias dpa="docker ps -a"
 alias dl="docker ps -l -q"
 alias dx="docker exec -it"
 
-
-# ---- TheFuck -----
-# thefuck alias
-# eval $(thefuck --alias)
-# eval $(thefuck --alias fk)
-
-#alias ifzf="$(fzf -m --preview="bat --color=always {}")"
-
-# ----- FZF ----
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# ---- YAZI ---
-alias yz="~/dotfiles/.config/yazi/target/release/yazi"
-
+# --------------------
+# Project-specific aliases
+# --------------------
 # -- Odoo ---
 alias kodoo="kill $(lsof -t -i:8069)"
+
+# --------------------
+# Utility aliases
+# --------------------
+# Yazi file manager
+alias yz="~/dotfiles/.config/yazi/target/release/yazi"
 
 # Load .env file if it exists
 if [ -f .env ]; then
   export $(grep -v '^#' .env | xargs)
 fi
 
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
 export PATH=~/.npm-global/bin:$PATH

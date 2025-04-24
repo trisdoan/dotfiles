@@ -58,8 +58,5 @@ zmodule zsh-users/zsh-autosuggestions
 
 zmodule kiesman99/zim-zoxide
 zmodule MichaelAquilina/zsh-autoswitch-virtualenv
-alias ls="exa"
-alias la="exa -a"
-alias ll="exa -l"
 
 

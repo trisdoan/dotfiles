@@ -1,5 +1,9 @@
-com.spotify.Client
-com.vixalien.sticky
-com.notesnook.Notesnook
-io.dbeaver.DBeaverCommunity
-org.fedoraproject.MediaWriter
+# Audio/Video
+com.spotify.Client              # Music streaming service
+
+# Productivity
+com.vixalien.sticky             # Sticky notes app
+com.notesnook.Notesnook         # Notes application
+
+# Communication
+com.slack.Slack                 # Team communication
