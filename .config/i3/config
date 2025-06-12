@@ -8,8 +8,8 @@ exec --no-startup-id picom
 exec --no-startup-id feh --bg-scale ~/dotfiles/.config/backgrounds/background.png
 
 # Zen browser profile shortcuts
-bindsym $mod+b exec flatpak run io.github.zen_browser.zen -P Trobz
-bindsym $mod+Shift+b exec flatpak run io.github.zen_browser.zen -P Dev
+bindsym $mod+b exec flatpak run app.zen_browser.zen -P Trobz
+bindsym $mod+Shift+b exec flatpak run app.zen_browser.zen -P Dev
 
 # IBUS
 exec --no-startup-id ibus-daemon -drx
