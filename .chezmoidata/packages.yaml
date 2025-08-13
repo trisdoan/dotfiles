@@ -1,0 +1,29 @@
+pacman:
+  - ghostty
+  - zsh
+  - tmux
+  - fcitx5
+  - fcitx5-unikey
+  - fcitx5-gtk
+  - fcitx5-qt
+  - fcitx5-configtool
+
+flatpak:
+  - flathub app.zen_browser.zen
+  - flathub com.slack.Slack
+
+yay:
+  - appimagelauncher
+
+
+curl_scripts:
+  - description: "opencode"
+    command: "curl -fsSL https://opencode.ai/install | bash"
+  - description: "uv"
+    command: "curl -LsSf https://astral.sh/uv/install.sh | sh"
+
+npm:
+  - "@google/gemini-cli"
+  - "@openai/codex"
+
+

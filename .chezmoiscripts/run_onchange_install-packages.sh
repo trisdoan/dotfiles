@@ -1,0 +1,50 @@
+{{- /* chezmoi template */ -}}
+{{- if eq .chezmoi.os "linux" -}}
+#!/bin/bash
+
+# Exit immediately if a command exits with a non-zero status.
+set -e
+
+echo "› Installing packages..."
+
+# --- Pacman Packages ---
+{{- if .packages.pacman }}
+echo "  › Installing pacman packages..."
+sudo pacman -Syu --noconfirm {{ .packages.pacman | join " " }}
+{{- end }}
+
+# --- AUR Packages (yay) ---
+{{- if .packages.yay }}
+echo "  › Installing AUR packages with yay..."
+yay -S --noconfirm {{ .packages.yay | join " " }}
+{{- end }}
+
+# --- Flatpak Packages ---
+{{- if .packages.flatpak }}
+echo "  › Installing flatpak packages..."
+flatpak install --noninteractive {{ .packages.flatpak | join " " }}
+{{- end }}
+
+# --- NPM Packages ---
+{{- if .packages.npm }}
+echo "  › Installing global npm packages..."
+npm install -g {{ .packages.npm | join " " }}
+{{- end }}
+
+# --- Curl Scripts and Shell Commands ---
+{{- if .packages.curl_scripts }}
+echo "  › Running installation scripts..."
+{{- range .packages.curl_scripts }}
+echo "    › Installing {{ .description }}..."
+eval "{{ .command }}"
+{{- end }}
+{{- end }}
+
+# Zsh and zimfw
+echo "Setting up Zsh and zimfw..."
+chsh -s $(which zsh)
+curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
+
+echo "✅ Installation complete!"
+
+{{- end -}}
