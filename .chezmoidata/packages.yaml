@@ -21,9 +21,10 @@ curl_scripts:
     command: "curl -fsSL https://opencode.ai/install | bash"
   - description: "uv"
     command: "curl -LsSf https://astral.sh/uv/install.sh | sh"
+  - description: "Bitwarden Secrets Manager CLI"
+    command: "curl https://bws.bitwarden.com/install | sh"
 
 npm:
   - "@google/gemini-cli"
   - "@openai/codex"
-
 
