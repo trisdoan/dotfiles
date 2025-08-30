@@ -1,0 +1,45 @@
+[user]
+    email = doanminhtri8183@gmail.com
+    name = trisdoan
+
+# delta: https://github.com/dandavison/delta
+[core]
+    pager = delta
+    editor = nvim
+    attributesfile = ~/.gitattributes
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true    # use n and N to move between diff sections
+    side-by-side = true
+
+; [merge]
+;     name = mergiraf
+;     driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P
+
+[diff]
+    colorMoved = default
+
+[alias]
+    fixup = "!git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -o git commit --fixup"
+
+[pull]
+    rebase = true
+
+[fetch]
+    prune = true
+
+[push]
+    # Automatically set up remote tracking when pushing a new branch
+    autoSetupRemote = true
+
+[init]
+    # Set default branch name to main
+    defaultBranch = main
+
+; [credential]
+;     helper = /usr/local/bin/git-credential-manager
+;     credentialStore = secretservice
+

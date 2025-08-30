@@ -11,11 +11,6 @@ echo "  › Installing pacman packages..."
 sudo pacman -Syu --noconfirm {{ .packages.pacman | join " " }}
 {{- end }}
 
-# --- AUR Packages (yay) ---
-{{- if .packages.yay }}
-echo "  › Installing AUR packages with yay..."
-yay -S --noconfirm {{ .packages.yay | join " " }}
-{{- end }}
 
 # --- NPM Packages ---
 {{- if .packages.npm }}
