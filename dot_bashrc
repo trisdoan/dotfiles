@@ -1,0 +1,55 @@
+# All the default Omarchy aliases and functions
+# (don't mess with these directly, just overwrite them here!)
+source ~/.local/share/omarchy/default/bash/rc
+
+# Add your own exports, aliases, and functions here.
+
+# --------------------
+# General aliases
+# --------------------
+alias cl="clear"
+alias vi='nvim'
+
+# --------------------
+# Git aliases
+# --------------------
+alias gc='git commit'
+alias gca="git commit -a -m"
+alias gp="git push"
+alias gpu="git pull"
+alias gst="git status"
+alias glog="git log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit"
+alias gdiff="git diff"
+alias gco="git checkout"
+alias gb='git branch'
+alias gba='git branch -a'
+alias gadd='git add'
+alias ga='git add -p'
+alias gcoall='git checkout -- .'
+alias gr='git remote'
+alias gre='git reset'
+alias gf='git fixup'
+alias lg='lazygit'
+
+
+# --------------------
+# Docker aliases
+# --------------------
+alias dco="docker compose"
+alias dps="docker ps"
+alias dpa="docker ps -a"
+alias dl="docker ps -l -q"
+alias dx="docker exec -it"
+
+
+
+# Use VSCode instead of neovim as your default editor
+# export EDITOR="code"
+#
+# Set a custom prompt with the directory revealed (alternatively use https://starship.rs)
+# PS1="\W \[\e]0;\w\a\]$PS1"
+
+# opencode
+export PATH=/home/trisdoan/.opencode/bin:$PATH
+
+. "$HOME/.local/share/../bin/env"
