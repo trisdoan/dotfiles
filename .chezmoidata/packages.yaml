@@ -1,30 +1,35 @@
-pacman:
-  - ghostty
-  - zsh
-  - tmux
-  - fcitx5
-  - fcitx5-unikey
-  - fcitx5-gtk
-  - fcitx5-qt
-  - fcitx5-configtool
-
-flatpak:
-  - flathub app.zen_browser.zen
-  - flathub com.slack.Slack
-
-yay:
-  - appimagelauncher
-
-
-curl_scripts:
-  - description: "opencode"
-    command: "curl -fsSL https://opencode.ai/install | bash"
-  - description: "uv"
-    command: "curl -LsSf https://astral.sh/uv/install.sh | sh"
-  - description: "Bitwarden Secrets Manager CLI"
-    command: "curl https://bws.bitwarden.com/install | sh"
-
-npm:
-  - "@google/gemini-cli"
-  - "@openai/codex"
-
+packages:
+  pacman:
+    - nodejs
+    - npm
+    - flatpak
+    - ghostty
+    - zsh
+    - tmux
+    - fcitx5
+    - fcitx5-unikey
+    - fcitx5-gtk
+    - fcitx5-qt
+    - fcitx5-configtool
+  
+  flatpak:
+    - app.zen_browser.zen
+    - com.slack.Slack
+    - com.simplenote.Simplenote
+  
+  # yay:
+  #   - appimagelauncher
+  
+  
+  curl_scripts:
+    - description: "opencode"
+      command: "curl -fsSL https://opencode.ai/install | bash"
+    - description: "uv"
+      command: "curl -LsSf https://astral.sh/uv/install.sh | sh"
+    - description: "Bitwarden Secrets Manager CLI"
+      command: "curl https://bws.bitwarden.com/install | sh"
+  
+  npm:
+    - "@google/gemini-cli"
+    - "@openai/codex"
+  

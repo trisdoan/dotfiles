@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Exit immediately if a command exits with a non-zero status.
+set -e
+
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+echo "  › Installing flatpak packages..."
+{{- if .packages.flatpak }}
+flatpak install flathub {{ .packages.flatpak | join " " }}
+{{- end }}
+
+
