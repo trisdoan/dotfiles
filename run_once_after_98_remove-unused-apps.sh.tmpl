@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Exit immediately if a command exits with a non-zero status.
+set -e
+
+echo "› Removing packages..."
+
+# --- Pacman Packages ---
+{{- if .packages.pacman }}
+sudo pacman -Rns --noconfirm {{ .packages.pacman | join " " }}
+sudo updatedb
+{{- end }}
+
+
+echo "✅ Uninstallation complete!"

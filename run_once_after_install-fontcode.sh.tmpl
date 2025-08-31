@@ -1,0 +1,12 @@
+#!/bin/bash
+
+font_name="{{ .omarchy_font }}"
+
+
+if [[ -n "$font_name" && "$font_name" != "CNCLD" ]]; then
+  # Update Ghostty config
+  #sed -i "s/family = \".*\"/family = \"$font_name\"/g" ~/.config/alacritty/alacritty.toml
+  omarchy-font-set "$font_name"
+  echo "Font updated to '$font_name'."
+fi
+

@@ -1,0 +1,10 @@
+packages:
+  pacman:
+    - 1password-beta
+    - 1password-cli
+    - alacritty
+    - libqalculate
+    - obs-studio
+    - obsidian
+    - typora
+

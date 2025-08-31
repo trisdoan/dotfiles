@@ -6,20 +6,12 @@ packages:
     - ghostty
     - zsh
     - tmux
-    - fcitx5
-    - fcitx5-unikey
-    - fcitx5-gtk
-    - fcitx5-qt
-    - fcitx5-configtool
+    - ttf-fira-code # font
   
   flatpak:
     - app.zen_browser.zen
     - com.slack.Slack
     - com.simplenote.Simplenote
-  
-  # yay:
-  #   - appimagelauncher
-  
   
   curl_scripts:
     - description: "opencode"
