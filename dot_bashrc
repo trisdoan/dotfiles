@@ -9,6 +9,8 @@ source ~/.local/share/omarchy/default/bash/rc
 # --------------------
 alias cl="clear"
 alias vi='nvim'
+alias reload-bash="source ~/.bashrc"
+alias edit-bash="nvim ~/.bashrc"
 
 # --------------------
 # Git aliases

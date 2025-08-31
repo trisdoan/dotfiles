@@ -1,6 +1,8 @@
-return {{
-    "LazyVim/LazyVim",
-    opts = {
-      colorscheme = "lunaperche",
-    },
-  }}
+return {
+  -- {
+  --   "LazyVim/LazyVim",
+  --   opts = {
+  --     colorscheme = "lunaperche",
+  --   },
+  -- },
+}
