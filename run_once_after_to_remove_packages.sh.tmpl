@@ -1,15 +1,23 @@
 #!/bin/bash
 
-# Exit immediately if a command exits with a non-zero status.
+# Exit immediately if a command exits with a non-zero status,
+# except inside conditionals/loops we handle.
 set -e
 
 echo "› Removing packages..."
 
 # --- Pacman Packages ---
 {{- if .to_remove_packages.pacman }}
-sudo pacman -Rns --noconfirm {{ .to_remove_packages.pacman | join " " }}
+for pkg in {{ .to_remove_packages.pacman | join " " }}; do
+  if pacman -Qi "$pkg" &>/dev/null; then
+    echo "Removing $pkg..."
+    sudo pacman -Rns --noconfirm "$pkg"
+  else
+    echo "Skipping $pkg (not installed)"
+  fi
+done
 sudo updatedb
 {{- end }}
 
-
 echo "✅ Uninstallation complete!"
+
