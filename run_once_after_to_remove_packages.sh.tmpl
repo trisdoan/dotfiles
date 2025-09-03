@@ -6,8 +6,8 @@ set -e
 echo "› Removing packages..."
 
 # --- Pacman Packages ---
-{{- if .packages.pacman }}
-sudo pacman -Rns --noconfirm {{ .packages.pacman | join " " }}
+{{- if .to_remove_packages.pacman }}
+sudo pacman -Rns --noconfirm {{ .to_remove_packages.pacman | join " " }}
 sudo updatedb
 {{- end }}
 

@@ -1,6 +1,6 @@
 {
   "checkpointing": {
-      "enabled": true
+    "enabled": true
   },
   "selectedAuthType": "oauth-personal",
   "theme": "GitHub"

@@ -1,29 +1,28 @@
 #!/bin/bash
 
-set -e
+set -euo pipefail
 
 KEY_NAME="id_ed25519"
 KEY_PATH="$HOME/.ssh/$KEY_NAME"
 EMAIL="doanminhtri8183@gmail.com"
 
-# # 1. Generate SSH key if not present
-# if [[ ! -f "$KEY_PATH" ]]; then
-#   echo "🔑 Generating SSH key..."
-#   ssh-keygen -t ed25519 -C "$EMAIL" -f "$KEY_PATH" -N ""
-# fi
-#
-# # 2. Add to ssh-agent
-# eval "$(ssh-agent -s)"
-# ssh-add "$KEY_PATH"
-#
-# # 3. Upload to GitHub via gh CLI if not already uploaded
-# KEY_TITLE="$(hostname)-$(date +%Y-%m-%d)"
-# PUB_KEY_CONTENT=$(cat "${KEY_PATH}.pub")
-#
-# # Check if key already exists on GitHub
-# if ! gh ssh-key list | grep -q "$PUB_KEY_CONTENT"; then
-#   echo "☁️  Uploading SSH key to GitHub..."
-#   echo "$PUB_KEY_CONTENT" | gh ssh-key add -t "$KEY_TITLE"
-# else
-#   echo "✅ SSH key already uploaded to GitHub."
-# fi
+echo "──────────────────────────────────────────────"
+echo "🔑 SSH Key Setup Instructions"
+echo "──────────────────────────────────────────────"
+echo ""
+echo "1. Generate a new SSH key if it does not exist:"
+echo "   ssh-keygen -t ed25519 -C \"$EMAIL\" -f \"$KEY_PATH\" -N \"\""
+echo ""
+echo "2. Start ssh-agent and add the key:"
+echo "   eval \$(ssh-agent -s)"
+echo "   ssh-add \"$KEY_PATH\""
+echo ""
+echo "3. Upload your public key to GitHub with the GitHub CLI:"
+echo "   gh auth login"
+echo "   gh auth refresh -h github.com -s admin:public_key"
+echo "   gh ssh-key add \"${KEY_PATH}.pub\" --title \"\$(hostname)-\$(date +%Y-%m-%d)\""
+echo ""
+echo "4. Verify the key is added:"
+echo "   gh ssh-key list"
+echo ""
+echo "✅ After completing these steps, you can use SSH with GitHub."

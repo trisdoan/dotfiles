@@ -1,4 +1,4 @@
-packages:
+to_remove_packages:
   pacman:
     - 1password-beta
     - 1password-cli
