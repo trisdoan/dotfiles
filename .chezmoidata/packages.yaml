@@ -24,5 +24,4 @@ packages:
   
   npm:
     - "@google/gemini-cli"
-    - "@openai/codex"
   
