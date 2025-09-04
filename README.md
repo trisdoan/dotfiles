@@ -12,9 +12,10 @@ cd /home/trobz/code/oca/hr/18.0
 npm install --save-dev eslint eslint-plugin-jsdoc
 npm install -g eslint_d
 
-example dotfiles: https://github.com/joelazar/dotfiles/blob/main/run_once_install_packages.sh.tmpl
-
 
 ### Fonts
 - first, instal font package: Super + Esc -> Install -> Package
 - Change font: Style -> Font
+
+### Nvim
+- to finish installing kkoomen/vim-doge: Open nvim and run :call doge#install()
