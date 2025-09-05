@@ -13,6 +13,13 @@ alias reload-bash="source ~/.bashrc"
 alias edit-bash="nvim ~/.bashrc"
 
 # --------------------
+# Tmux aliases
+# --------------------
+alias tm="tmuxifier load-session"
+alias tme="tmuxifier edit-session"
+alias tmr="tmux kill-session -t"
+
+# --------------------
 # Git aliases
 # --------------------
 alias gc='git commit'
@@ -33,7 +40,6 @@ alias gre='git reset'
 alias gf='git fixup'
 alias lg='lazygit'
 
-
 # --------------------
 # Docker aliases
 # --------------------
@@ -43,8 +49,6 @@ alias dpa="docker ps -a"
 alias dl="docker ps -l -q"
 alias dx="docker exec -it"
 
-
-
 # Use VSCode instead of neovim as your default editor
 # export EDITOR="code"
 #
@@ -53,5 +57,9 @@ alias dx="docker exec -it"
 
 # opencode
 export PATH=/home/trisdoan/.opencode/bin:$PATH
+
+# tmuxifier
+export PATH="$HOME/.tmuxifier/bin:$PATH"
+eval "$(tmuxifier init -)"
 
 . "$HOME/.local/share/../bin/env"

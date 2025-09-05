@@ -44,6 +44,10 @@ gui:
 update:
   method: never
 customCommands:
+  - key: "<c-u>"
+    description: "Update submodules (remote)"
+    command: "git submodule update --remote"
+    context: "global"
   - key: "<c-n>"
     description: "New branch with prefix"
     prompts:
@@ -191,17 +195,4 @@ customCommands:
         body: "Are you sure you want to commit?"
     command: "git commit --message '{{.Form.Type}}{{ if .Form.Scope }}({{ .Form.Scope }}){{ end }}{{.Form.Breaking}}: {{.Form.Message}}'"
     loadingText: "Creating conventional commit..."
-  - key: "<c-c>"
-    command: "gitmoji -c"
-    context: "files"
-    description: "Open gitmoji"
-    loadingText: "Opening gitmoji cli tool"
-    output: terminal
-  - key: "R"
-    command: "git reset --soft HEAD~1"
-    context: "files"
-    description: "Undo last commit"
-  - key: "f"
-    command: "git difftool -y {{.SelectedLocalCommit.Sha}} -- {{.SelectedCommitFile.Name}}"
-    context: "commitFiles"
-    description: "Compare (difftool) with local copy"
+
