@@ -20,7 +20,6 @@ return {
       exclude = { -- add folder names here to exclude
         ".git",
         "node_modules",
-        "i18n",
       },
     },
   },
