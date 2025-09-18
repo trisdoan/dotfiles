@@ -20,3 +20,5 @@ scrollback-limit = 1000000000
 resize-overlay = never
 
 shell-integration-features = no-cursor,sudo,title
+
+background-opacity = 0.5
