@@ -7,7 +7,6 @@ font-feature = +ss07
 
 font-size = 15.0
 
-theme = flexoki-dark
 
 window-inherit-working-directory = false
 cursor-style-blink = false
