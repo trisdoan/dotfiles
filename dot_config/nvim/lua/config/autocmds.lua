@@ -14,7 +14,7 @@ end
 
 -- set_autoformat({ "lua" }, false)
 set_autoformat({ "yaml" }, false)
--- set_autoformat({ "xml" }, false)
+set_autoformat({ "xml" }, false)
 -- set_autoformat({ "javascript" }, false)
 
 -- Disable the concealing in some file formats

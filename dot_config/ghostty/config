@@ -7,6 +7,7 @@ font-feature = +ss07
 
 font-size = 15.0
 
+theme = Flexoki Dark
 
 window-inherit-working-directory = false
 cursor-style-blink = false
@@ -20,4 +21,9 @@ resize-overlay = never
 
 shell-integration-features = no-cursor,sudo,title
 
-background-opacity = 0.5
+background-opacity = 0.8
+
+keybind = super+z=toggle_split_zoom
+
+# Slowdown mouse scrolling
+mouse-scroll-multiplier = 0.95
