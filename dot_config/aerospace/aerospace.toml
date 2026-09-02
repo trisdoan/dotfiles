@@ -110,6 +110,11 @@ gaps.outer.right =      0
     alt-slash = 'layout tiles horizontal vertical'
     alt-comma = 'layout accordion horizontal vertical'
 
+    # Zoom the focused window to fill the monitor (AeroSpace's own fullscreen,
+    # not native macOS fullscreen, so it creates no extra Space).
+    # See: https://nikitabobko.github.io/AeroSpace/commands#fullscreen
+    alt-shift-enter = 'fullscreen'
+
     # See: https://nikitabobko.github.io/AeroSpace/commands#focus
     alt-h = 'focus left'
     alt-j = 'focus down'
