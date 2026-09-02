@@ -1,0 +1,4 @@
+for fn in ~/.config/bash/fns/*; do
+  [[ -r $fn ]] && source "$fn"
+done
+unset fn

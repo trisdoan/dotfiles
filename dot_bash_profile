@@ -1,0 +1,7 @@
+# Login shells on macOS (Ghostty, tmux panes, ssh) read this file, never ~/.bashrc.
+# Environment first so `bash -lc "cmd"` gets a full PATH, then the interactive rc chain.
+source ~/.config/bash/envs
+
+if [[ $- == *i* && -f ~/.bashrc ]]; then
+  source ~/.bashrc
+fi

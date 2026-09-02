@@ -1,0 +1,41 @@
+# Minimal single-line prompt, Kanagawa Dragon palette (matches ~/.config/ghostty/config).
+# Only modules referenced in `format` are rendered.
+add_newline = true
+format = "$directory$git_branch$git_status$cmd_duration$line_break$character"
+
+[directory]
+style = "bold #8ba4b0"
+truncation_length = 3
+truncate_to_repo = true
+truncation_symbol = "…/"
+read_only = " "
+read_only_style = "#c4746e"
+
+[git_branch]
+symbol = " "
+format = "[$symbol$branch]($style) "
+style = "#a292a3"
+
+[git_status]
+format = "[$all_status$ahead_behind]($style) "
+style = "#c4b28a"
+conflicted = "="
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+untracked = "?"
+stashed = "$"
+modified = "!"
+staged = "+"
+renamed = "»"
+deleted = "✘"
+
+[cmd_duration]
+min_time = 2000
+format = "[$duration]($style) "
+style = "#a6a69c"
+
+[character]
+success_symbol = "[❯](#8a9a7b)"
+error_symbol = "[❯](#c4746e)"
+vimcmd_symbol = "[❮](#c4b28a)"

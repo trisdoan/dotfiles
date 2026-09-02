@@ -1,11 +1,13 @@
 # Keybindings (macOS)
 
-Reference for this branch's two keyboard layers: **AeroSpace** (window manager, `alt`)
-and **Ghostty** (terminal, `cmd`). Regenerate the live truth with:
+Reference for this branch's three keyboard layers: **AeroSpace** (window manager, `alt`),
+**Ghostty** (terminal, `cmd`) and **bash/readline** (the shell itself). Regenerate the live
+truth with:
 
 ```sh
 aerospace config --get mode.main.binding --keys   # every bound AeroSpace key
 ghostty +list-keybinds                            # Ghostty defaults + overrides
+bind -p; bind -X                                  # readline keys + fzf widgets
 ```
 
 ## Zoom / fullscreen a window — `alt+shift+enter`
@@ -96,6 +98,49 @@ Unbound on purpose: `toggle_quick_terminal`. The `quick-terminal-position` /
 `quick-terminal-animation-duration` settings in the config are therefore inert; add e.g.
 `keybind = global:ctrl+grave_accent=toggle_quick_terminal` to activate the drop-down
 terminal. Avoid `cmd+grave_accent` — macOS owns it ("move focus to next window").
+
+## Bash + readline
+
+Shell config is `~/.bashrc` -> `~/.config/bash/{envs,shell,aliases,functions,init}` with
+readline in `~/.inputrc` (all chezmoi-managed, modelled on omarchy's `default/bash/*`).
+
+| Keys | Action |
+|---|---|
+| `up` / `down` | History search on what you already typed (`history-search-backward/forward`), not a blind history walk |
+| `tab` / `shift+tab` | Cycle completion candidates (`menu-complete` / `menu-complete-backward`) |
+| `ctrl+r` | fzf fuzzy history (`__fzf_history__`) |
+| `ctrl+t` | fzf file picker, inserts the path at the cursor (`fzf-file-widget`) |
+| `**` + `tab` | fzf completion trigger for any command — `vi src/**<tab>`, `kill **<tab>`, `ssh **<tab>` |
+| `ctrl+w` / `ctrl+u` / `ctrl+k` / `ctrl+a` / `ctrl+e` | readline defaults (kill word / to line start / to line end, jump to start / end) |
+
+Completion is case-insensitive, ambiguous matches list immediately, and the common prefix
+is inserted before cycling (`completion-ignore-case`, `show-all-if-ambiguous`,
+`menu-complete-display-prefix`). Every keybinding in `.inputrc` sits inside `$if Bash`, so
+`python`, `psql` and other readline programs keep their stock behaviour.
+
+**`alt+c` (fzf cd widget) is unreachable.** fzf binds it (`"\ec"` macro -> `__fzf_cd__`),
+but AeroSpace claims every `alt-<letter>` before Ghostty sees it and `macos-option-as-alt`
+is unset. Use `cd **<tab>` or just `cd <partial-name>` — `cd` is zoxide (`zd`), so a
+frecency jump replaces the widget.
+
+### Aliases and functions
+
+| Command | Meaning |
+|---|---|
+| `ls` / `lsa` / `lt` / `lta` | `eza -lh` / `+ -a` / tree depth 2 with git / tree with hidden |
+| `..` / `...` / `....` | Up 1 / 2 / 3 directories |
+| `cd <name>` | `zd` — real dir if it exists, else zoxide frecency jump (prints the target) |
+| `ff` / `eff` | fzf with `bat` preview / open the pick in `$EDITOR` |
+| `sff <dest>` | Pick a recent file by mtime, `scp` it to `<dest>` |
+| `compress <dir>` / `decompress <file>` | `tar -czf dir.tar.gz` / `tar -xzf` |
+| `cl` / `vi` / `lg` / `d` / `t` | `clear` / `nvim` / `lazygit` / `docker` / attach-or-create tmux session `Work` |
+| `n [path]` | `nvim .` with no args, else `nvim <args>` |
+| `cx` / `clb` | Claude with bypassed permissions / with the `~/.claude-backup` config dir |
+| `g` / `gcm` / `gcam` / `gcad` | `git` / `commit -m` / `commit -a -m` / `commit -a --amend` |
+
+The prompt is starship (`~/.config/starship.toml`): path, git branch, git status, and the
+duration of anything slower than 2s, with `❯` on its own line. `cmd+arrow_up` /
+`cmd+arrow_down` in Ghostty jump between those prompts.
 
 ## Layer interaction
 

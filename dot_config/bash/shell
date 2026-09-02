@@ -1,0 +1,21 @@
+# History
+shopt -s histappend
+shopt -s cmdhist
+HISTCONTROL=ignoreboth:erasedups
+HISTSIZE=32768
+HISTFILESIZE="${HISTSIZE}"
+HISTIGNORE='cl:clear:exit:pwd:ls:lsa:cd:cd ..'
+
+# Quality of life
+shopt -s checkwinsize
+shopt -s globstar
+shopt -s autocd
+shopt -s cdspell dirspell
+shopt -s no_empty_cmd_completion
+
+# Autocompletion (brew bash-completion@2: git, brew, docker, ssh hosts, ...)
+if [[ -z ${BASH_COMPLETION_VERSINFO:-} ]]; then
+  bash_completion_sh="${HOMEBREW_PREFIX:-/opt/homebrew}/etc/profile.d/bash_completion.sh"
+  [[ -r $bash_completion_sh ]] && source "$bash_completion_sh"
+  unset bash_completion_sh
+fi

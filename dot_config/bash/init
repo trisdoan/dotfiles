@@ -1,0 +1,14 @@
+if [[ $- == *i* ]] && [[ ${TERM:-} != "dumb" ]] && command -v starship &>/dev/null; then
+  eval "$(starship init bash)"
+else
+  # Fallback prompt: cwd + colored $, no dependencies.
+  PS1='\[\e[38;5;110m\]\w\[\e[0m\] \$ '
+fi
+
+if command -v zoxide &>/dev/null; then
+  eval "$(zoxide init bash)"
+fi
+
+if command -v fzf &>/dev/null; then
+  eval "$(fzf --bash)" # Ctrl-R history, Ctrl-T files, Alt-C dirs
+fi

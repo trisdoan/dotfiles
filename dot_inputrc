@@ -1,0 +1,42 @@
+set meta-flag on
+set input-meta on
+set output-meta on
+set convert-meta off
+set completion-ignore-case on
+set completion-prefix-display-length 2
+set show-all-if-ambiguous on
+set show-all-if-unmodified on
+
+# Immediately add a trailing slash when autocompleting symlinks to directories
+set mark-symlinked-directories on
+
+# Do not autocomplete hidden files unless the pattern explicitly begins with a dot
+set match-hidden-files off
+
+# Show all autocomplete results at once
+set page-completions off
+
+# If there are more than 200 possible completions for a word, ask to show them all
+set completion-query-items 200
+
+# Show extra file information when completing, like `ls -F` does
+set visible-stats on
+
+# Be more intelligent when autocompleting by also looking at the text after the cursor
+set skip-completed-text on
+
+# Coloring for tab completions
+set colored-stats on
+
+$if Bash
+# Arrow keys match what you've typed so far against your command history
+"\e[A": history-search-backward
+"\e[B": history-search-forward
+"\e[C": forward-char
+"\e[D": backward-char
+
+# Cycle forward and backward through completion candidates (tab/shift+tab)
+TAB: menu-complete
+"\e[Z": menu-complete-backward
+set menu-complete-display-prefix on
+$endif

@@ -1,0 +1,36 @@
+# Environment for every bash shell. Sourced by ~/.bash_profile (login) and
+# ~/.config/bash/rc (interactive), so everything here MUST be idempotent.
+
+path_prepend() {
+  case ":$PATH:" in *":$1:"*) ;; *) PATH="$1${PATH:+:$PATH}" ;; esac
+}
+
+path_append() {
+  case ":$PATH:" in *":$1:"*) ;; *) PATH="${PATH:+$PATH:}$1" ;; esac
+}
+
+# Homebrew sets PATH/MANPATH/INFOPATH/HOMEBREW_*; skip if already loaded.
+if [[ -z ${HOMEBREW_PREFIX:-} && -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+export PNPM_HOME="$HOME/Library/pnpm"
+path_append "$HOME/go/bin"
+path_append "$PNPM_HOME"
+path_append "$HOME/.antigravity/antigravity/bin"
+path_prepend "$HOME/.local/bin" # uv + antigravity CLI shims win over brew/system
+export PATH
+
+export EDITOR=nvim
+export SUDO_EDITOR="$EDITOR"
+
+# Color man pages with bat (omarchy default)
+export BAT_THEME=ansi
+export MANROFFOPT="-c"
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
+# fzf: minimal chrome, Kanagawa Dragon palette to match ~/.config/ghostty/config
+export FZF_DEFAULT_OPTS="--height=40% --layout=reverse --border=none --info=inline --no-separator --color=fg:#c5c9c5,fg+:#c5c9c5,bg+:#282727,gutter:-1,hl:#8ba4b0,hl+:#8ba4b0,info:#a6a69c,border:#54546d,prompt:#8a9a7b,pointer:#c4746e,marker:#c4b28a,spinner:#8ea4a2,header:#a292a3"
+
+# Silence /bin/bash 3.2's "default shell is now zsh" nag when scripts use it.
+export BASH_SILENCE_DEPRECATION_WARNING=1

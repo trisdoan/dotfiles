@@ -1,0 +1,9 @@
+# If not running interactively, don't do anything (leave this at the top of this file)
+[[ $- != *i* ]] && return
+
+# All the defaults live in ~/.config/bash/* (chezmoi-managed).
+# Don't edit those from here - override them below instead.
+source ~/.config/bash/rc
+
+# Machine-local overrides that shouldn't be committed go here.
+[[ -f ~/.bashrc.local ]] && source ~/.bashrc.local
