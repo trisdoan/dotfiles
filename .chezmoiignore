@@ -1,0 +1,4 @@
+# Repo-only files: kept in git, never written to $HOME.
+docs
+docs/**
+README.md
