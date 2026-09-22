@@ -11,6 +11,7 @@ alias cl="clear"
 alias vi='nvim'
 alias reload-bash="source ~/.bashrc"
 alias edit-bash="nvim ~/.bashrc"
+alias cpwd='pwd | wl-copy'
 
 # --------------------
 # Tmux aliases
