@@ -20,13 +20,11 @@ Installs packages, then sets theme/font/bar/browser via Omarchy commands.
 
 - Esc<->CapsLock + Left Alt<->Super swap (replaces Omarchy's compose-key default)
 - Slack on `SUPER+SHIFT+S` (replaces default Google Maps webapp)
-- Screenshots/recording on F8 (not PrintScreen): `F8` region, `SHIFT+F8` window, `ALT+F8` record, `CTRL+ALT+F8` record display
-- `ALT+F/H/J/K/L` window fullscreen/focus
-- ghostty: font Fira Code, ligatures (ss02/03/05/07), opacity 0.8, 1B scrollback, `SUPER+Z` split zoom
+- ghostty: opacity 0.8
 - bash: git/docker/agent aliases, guarded PATH additions
 - git: delta pager, `fixup` alias
-- neovim: LazyVim + AI/coding/formatting/lsp/mason/noice/snacks/surround, no tmux-navigator
-- theme `retro-82`, font `Fira Code`, transparent bar, tailscale widget
+- neovim: LazyVim + AI/coding/formatting/lsp/mason/noice/snacks/surround
+- theme `retro-82`, transparent bar, tailscale widget
 
 ## Commands
 
