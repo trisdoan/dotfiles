@@ -3,7 +3,6 @@ set -euo pipefail
 
 # retro-82 is a stock Omarchy theme, no `omarchy theme install` needed.
 omarchy theme set retro-82
-omarchy font set "Fira Code"
 omarchy bar transparent true
 
 # The only other local deviation from the packaged shell.json. `put` leaves a

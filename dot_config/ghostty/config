@@ -2,11 +2,10 @@
 # include optional.
 config-file = ?"~/.local/state/omarchy/current/theme/ghostty.conf"
 
-# Font. Keep the family double-quoted: `omarchy font set` rewrites this exact
-# pattern with sed.
-font-family = "Fira Code"
+# Font
+font-family = "JetBrainsMono Nerd Font"
 font-style = Regular
-font-size = 15.0
+font-size = 9
 
 # Window
 window-theme = ghostty
@@ -40,17 +39,11 @@ mouse-scroll-multiplier = 0.95
 async-backend = epoll
 
 # ---- personal overrides ----
-font-feature = +ss02
-font-feature = +ss03
-font-feature = +ss05
-font-feature = +ss07
 background-opacity = 0.8
 window-inherit-working-directory = false
 window-save-state = always
 quit-after-last-window-closed = true
 quick-terminal-position = top
 quick-terminal-animation-duration = 0
-scrollback-limit = 1000000000
 mouse-hide-while-typing = true
 shell-integration-features = no-cursor,ssh-env,sudo,title
-keybind = super+z=toggle_split_zoom
