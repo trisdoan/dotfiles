@@ -25,6 +25,7 @@ Installs packages, then sets theme/font/bar/browser via Omarchy commands.
 - git: delta pager, `fixup` alias
 - neovim: LazyVim + AI/coding/formatting/lsp/mason/noice/snacks/surround
 - theme `retro-82`, transparent bar, tailscale widget
+- browser: Zen (native, replaces default Chromium)
 
 ## How to customize
 
