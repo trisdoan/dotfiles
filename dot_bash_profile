@@ -1,0 +1,10 @@
+#
+# ~/.bash_profile
+#
+
+[[ -f ~/.bashrc ]] && . ~/.bashrc
+
+# fcitx5 input method (Vietnamese). GTK_IM_MODULE stays unset on purpose:
+# it breaks Electron apps under Wayland.
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx

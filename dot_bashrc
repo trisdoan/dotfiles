@@ -1,0 +1,88 @@
+# If not running interactively, don't do anything (keep this at the top).
+[[ $- != *i* ]] && return
+
+# Omarchy's defaults: aliases, the fns/* functions (tdl, tds, tdlm, tsl,
+# worktrees, ...), history/completion options, and init for mise, starship,
+# zoxide and fzf. It also exports EDITOR, BROWSER, BAT_THEME, MANPAGER and
+# puts ~/.local/bin on PATH. Override below; never edit Omarchy's files.
+if [[ -f /etc/omarchy.conf ]]; then
+  source /etc/omarchy.conf
+  export OMARCHY_PATH="${OMARCHY_PATH:-/usr/share/omarchy}"
+else
+  export OMARCHY_PATH=/usr/share/omarchy
+fi
+source "$OMARCHY_PATH/default/bash/rc"
+
+# --------------------
+# General aliases
+# --------------------
+alias cl="clear"
+alias vi='nvim'
+alias reload-bash="source ~/.bashrc"
+alias edit-bash="nvim ~/.bashrc"
+alias cpwd='pwd | wl-copy'
+
+# --------------------
+# Git
+# --------------------
+alias gc='git commit'
+alias gca="git commit -a -m"
+alias gp="git push"
+alias gpu="git pull"
+alias gst="git status"
+alias glog="git log --graph --topo-order --pretty='%w(100,0,6)%C(yellow)%h%C(bold)%C(black)%d %C(cyan)%ar %C(green)%an%n%C(bold)%C(white)%s %N' --abbrev-commit"
+alias gdiff="git diff"
+alias gco="git checkout"
+alias gb='git branch'
+alias gba='git branch -a'
+alias gadd='git add'
+alias ga='git add -p'
+alias gcoall='git checkout -- .'
+alias gr='git remote'
+alias gre='git reset'
+alias gf='git fixup'
+alias lg='lazygit'
+
+# --------------------
+# Docker
+# --------------------
+alias dco="docker compose"
+alias dps="docker ps"
+alias dpa="docker ps -a"
+alias dl="docker ps -l -q"
+alias dx="docker exec -it"
+
+# --------------------
+# Agents and work tools
+# --------------------
+alias clb="CLAUDE_CONFIG_DIR=~/.claude-backup claude"
+alias agd="agent-deck"
+alias odv="odoo-venv"
+[[ -r "$HOME/.bash_completions/odoo-venv.sh" ]] && source "$HOME/.bash_completions/odoo-venv.sh"
+
+# --------------------
+# PATH (guarded; a missing directory is not an error)
+# --------------------
+for dir in \
+  "$HOME/.pyenv/bin" \
+  "$HOME/.opencode/bin" \
+  "$HOME/.cargo/bin" \
+  "$HOME/.bun/bin" \
+  "$HOME/.local/share/pnpm" \
+  "$HOME/go/bin" \
+  "$HOME/development/flutter/bin" \
+  "/var/lib/snapd/snap/bin" \
+  ; do
+  [[ -d $dir ]] || continue
+  case ":$PATH:" in
+  *":$dir:"*) ;;
+  *) PATH="$dir:$PATH" ;;
+  esac
+done
+export PATH
+unset dir
+
+export PNPM_HOME="$HOME/.local/share/pnpm"
+export BUN_INSTALL="$HOME/.bun"
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null && eval "$(pyenv init - bash)"
