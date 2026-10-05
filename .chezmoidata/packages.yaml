@@ -1,8 +1,8 @@
 packages:
-  # Arch/Omarchy: tmux, starship, fzf, eza, bat, ripgrep, fd, lazygit and
-  # lazydocker already ship in omarchy-base.packages.
+  # Arch/Omarchy: tmux, starship, fzf, eza, bat, ripgrep, fd, lazygit,
+  # lazydocker and neovim (via omarchy-nvim's dependency) already ship in
+  # omarchy-base.packages.
   pacman:
-    - neovim
     - ghostty
     - git-delta
     - ttf-fira-code
