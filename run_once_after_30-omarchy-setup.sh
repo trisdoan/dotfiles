@@ -1,12 +1,8 @@
 #!/bin/bash
 set -euo pipefail
 
-# flexoki-dark is not a stock theme (only flexoki-light is), so install the
-# git theme once. `omarchy theme update` refreshes it later.
-omarchy theme extras | grep -q 'themes/flexoki-dark$' ||
-  omarchy theme install https://github.com/euandeas/omarchy-flexoki-dark-theme.git
-
-omarchy theme set flexoki-dark
+# retro-82 is a stock Omarchy theme, no `omarchy theme install` needed.
+omarchy theme set retro-82
 omarchy font set "Fira Code"
 omarchy bar transparent true
 
