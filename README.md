@@ -13,7 +13,7 @@ Installs packages, then sets theme/font/bar/browser via Omarchy commands.
 
 ## Managed
 
-- bash, git, neovim (LazyVim), ghostty, starship, mise
+- bash, git, neovim (LazyVim), ghostty, mise
 - Hyprland: `hypr/input.lua` (Esc<->CapsLock swap), `hypr/bindings.lua`
 
 ## Customization
