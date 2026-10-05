@@ -1,0 +1,8 @@
+#!/bin/bash
+set -euo pipefail
+
+omarchy pkg add {{ range .packages.pacman }}{{ . | quote }} {{ end }}
+
+{{ range .packages.flatpak -}}
+flatpak info {{ . | quote }} >/dev/null 2>&1 || flatpak install -y --noninteractive flathub {{ . | quote }}
+{{ end -}}
