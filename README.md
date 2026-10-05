@@ -26,6 +26,23 @@ Installs packages, then sets theme/font/bar/browser via Omarchy commands.
 - neovim: LazyVim + AI/coding/formatting/lsp/mason/noice/snacks/surround
 - theme `retro-82`, transparent bar, tailscale widget
 
+## How to customize
+
+1. Check if Omarchy has a command for it first (`omarchy commands --all`) —
+   theme, font, bar, background, browser. Use that; never hand-edit a
+   generated or dynamic file (e.g. the `config-file = ?"...theme/ghostty.conf"`
+   include).
+2. No command for it (keybinds, font size, aliases, padding, etc.) — edit the
+   file in `~/projects/dotfiles`, then apply and reload:
+   ```bash
+   chezmoi apply -v ~/.config/ghostty/config
+   omarchy restart terminal      # or: hyprctl reload, omarchy refresh tmux
+   ```
+3. Edited the live file instead? Pull it back into source before committing:
+   ```bash
+   chezmoi add ~/.config/ghostty/config
+   ```
+
 ## Commands
 
 ```bash
