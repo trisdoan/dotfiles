@@ -1,0 +1,16 @@
+[settings]
+idiomatic_version_file_enable_tools = ["ruby"]
+experimental = true
+python.uv_venv_auto = true
+[settings.ruby]
+ruby_build_opts = "CC=gcc-14 CXX=g++-14"
+
+[settings.upgrade]
+auto_prune = false
+
+[tools]
+claude = "latest"
+codex = "latest"
+gh = "latest"
+"github:can1357/oh-my-pi" = "latest"
+node = "latest"
