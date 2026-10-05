@@ -1,8 +1,6 @@
 # dotfiles
 
-chezmoi config for one machine: Omarchy Linux. Source lives at
-`~/projects/dotfiles`.
-
+chezmoi config for one machine: Omarchy Linux.
 ## Install
 
 ```bash
@@ -18,14 +16,17 @@ Installs packages, then sets theme/font/bar/browser via Omarchy commands.
 - bash, git, neovim (LazyVim), ghostty, starship, mise
 - Hyprland: `hypr/input.lua` (Esc<->CapsLock swap), `hypr/bindings.lua`
 
-## Not managed (Omarchy owns these)
+## Customization
 
-- **tmux** — no personal config. Use Omarchy's `~/.config/tmux/tmux.conf`,
-  restore with `omarchy refresh tmux`, sessions via `tdl` / `tds` / `tdlm` / `tsl`.
-- `hypr/hyprland.lua`, `monitors.lua`, `looknfeel.lua`, `autostart.lua` —
-  left alone so `omarchy refresh hyprland` keeps working.
-- Theme, font, bar, browser, wallpaper — set live with `omarchy theme set`,
-  `omarchy font set`, `omarchy bar`, `omarchy default browser`, not tracked.
+- Esc<->CapsLock + Left Alt<->Super swap (replaces Omarchy's compose-key default)
+- Slack on `SUPER+SHIFT+S` (replaces default Google Maps webapp)
+- Screenshots/recording on F8 (not PrintScreen): `F8` region, `SHIFT+F8` window, `ALT+F8` record, `CTRL+ALT+F8` record display
+- `ALT+F/H/J/K/L` window fullscreen/focus
+- ghostty: font Fira Code, ligatures (ss02/03/05/07), opacity 0.8, 1B scrollback, `SUPER+Z` split zoom
+- bash: git/docker/agent aliases, guarded PATH additions
+- git: delta pager, `fixup` alias
+- neovim: LazyVim + AI/coding/formatting/lsp/mason/noice/snacks/surround, no tmux-navigator
+- theme `retro-82`, font `Fira Code`, transparent bar, tailscale widget
 
 ## Commands
 
