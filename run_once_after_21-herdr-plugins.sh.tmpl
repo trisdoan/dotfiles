@@ -1,0 +1,13 @@
+#!/bin/bash
+set -euo pipefail
+
+command -v herdr >/dev/null || exit 0
+
+install_plugin() {
+  local spec="$1" id="$2"
+  herdr plugin list 2>/dev/null | grep -q "^- $id " ||
+    herdr plugin install "$spec" -y
+}
+
+install_plugin "smarzban/herdr-file-viewer" "herdr-file-viewer"
+install_plugin "tanshio/herdr-worktreeinclude" "tanshio.worktreeinclude"
