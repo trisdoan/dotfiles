@@ -2,13 +2,35 @@ packages:
   # Arch/Omarchy: tmux, starship, fzf, eza, bat, ripgrep, fd, lazygit,
   # lazydocker and neovim (via omarchy-nvim's dependency) already ship in
   # omarchy-base.packages.
+
   pacman:
     - ghostty
     - git-delta
-    - ttf-fira-code
     - flatpak
+    - chezmoi
+    - efibootmgr
+    - fcitx5-unikey
+    - go
+    - nodejs
+    - npm
+    - pnpm
+    - postgresql
+    - rsync
+    - tailscale
+    - vhs
+    - wget
 
-  # No Omarchy command wraps flatpak, and slack-desktop is in neither the
-  # pacman repos nor the AUR.
+  aur:
+    - android-studio
+
   flatpak:
     - com.slack.Slack
+
+  remove:
+    - kdenlive
+    - moonlight-qt
+    - xournalpp
+    - pinta
+    - aether
+    - cliamp
+    - tensaku
