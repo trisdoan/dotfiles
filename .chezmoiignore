@@ -1,0 +1,17 @@
+# Machine-generated, high-churn state: nvim's plugin lockfile gets rewritten
+# by Lazy.nvim on every install/update. Tracking it as a live chezmoi target
+# causes "has changed since chezmoi last wrote it?" prompts and lets orphaned
+# plugin entries linger in the repo.
+.config/nvim/lazy-lock.json
+
+# Secret/credential backstop: never let these get applied even if accidentally
+# added to the source tree.
+.env
+.env.*
+*.pem
+*.key
+id_rsa
+id_ed25519
+id_ecdsa
+id_dsa
+*.ppk
