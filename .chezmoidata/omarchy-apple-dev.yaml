@@ -1,0 +1,6 @@
+# Pinned upstream commit for omarchy-apple-dev. The installer runs sudo and
+# builds an AUR package, so move this only after reading the upstream diff.
+omarchy_apple_dev:
+  repo: https://github.com/joshuaswarren/omarchy-apple-dev
+  rev: 1d42ec4961de8e75dd953bf7fcba897667d78ead
+  dir: projects/omarchy-apple-dev

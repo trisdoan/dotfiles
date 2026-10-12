@@ -1,0 +1,22 @@
+#!/bin/bash
+# omarchy-apple-dev rev: {{ .omarchy_apple_dev.rev }}
+# Changing the pinned rev in .chezmoidata/omarchy-apple-dev.yaml re-runs this.
+set -euo pipefail
+
+dir="$HOME/{{ .omarchy_apple_dev.dir }}"
+rev={{ .omarchy_apple_dev.rev | quote }}
+
+if ! git -C "$dir" rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+  git clone -q {{ .omarchy_apple_dev.repo | quote }} "$dir"
+fi
+git -C "$dir" fetch -q origin "$rev"
+git -C "$dir" checkout -q "$rev"
+
+# Read docs/omarchy-apple-dev-security.md in the dotfiles repo before this step.
+# The installer prompts for its mode and runs sudo, so it needs a terminal.
+# It stops at the Xcode SDK step until you pass XCODE_XIP; that is not a failure here.
+cd "$dir"
+./install-toolchain.sh || {
+  echo "omarchy-apple-dev: installer stopped; follow its message, then re-run:" >&2
+  echo "  cd $dir && ./install-toolchain.sh" >&2
+}

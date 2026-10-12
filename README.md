@@ -52,3 +52,10 @@ chezmoi apply -v    # apply changes
 chezmoi add <path>  # track a new file
 chezmoi cd          # go to source dir
 ```
+
+## omarchy-apple-dev
+
+`run_onchange_after_23-omarchy-apple-dev.sh.tmpl` clones the project to
+`~/projects/omarchy-apple-dev` at the commit pinned in
+`.chezmoidata/omarchy-apple-dev.yaml` and runs its installer (interactive).
+Read [docs/omarchy-apple-dev-security.md](docs/omarchy-apple-dev-security.md) first.

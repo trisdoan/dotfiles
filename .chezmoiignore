@@ -15,3 +15,6 @@ id_ed25519
 id_ecdsa
 id_dsa
 *.ppk
+
+# Docs for humans, not dotfiles to deploy into $HOME.
+docs
