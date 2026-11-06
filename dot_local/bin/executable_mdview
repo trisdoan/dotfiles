@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# mdview: open a Markdown file or directory in the local novel viewer.
+#
+#   mdview [path]     file or directory (default: current directory)
+#   mdview --stop     stop all viewer servers
+#
+# Binds to localhost and opens the browser. Ctrl+C stops the server.
+set -euo pipefail
+
+server="${MDVIEW_SERVER:-$HOME/.omp/agent/skills/ak-markdown-novel-viewer/scripts/server.cjs}"
+
+if [[ ! -f "$server" ]]; then
+  echo "mdview: viewer not found at $server (set MDVIEW_SERVER)" >&2
+  exit 1
+fi
+
+if [[ "${1:-}" == "--stop" ]]; then
+  exec node "$server" --stop
+fi
+
+target="$(realpath -- "${1:-.}")"
+if [[ -d "$target" ]]; then
+  exec node "$server" --dir "$target" --open
+elif [[ -f "$target" ]]; then
+  exec node "$server" --file "$target" --open
+else
+  echo "mdview: not found: ${1:-.}" >&2
+  exit 1
+fi
