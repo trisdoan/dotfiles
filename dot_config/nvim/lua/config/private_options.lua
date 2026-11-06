@@ -1,7 +1,6 @@
 require("config.remote_clipboard").setup()
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
-vim.cmd("let g:netrw_liststyle = 3")
 
 local opt = vim.opt
 
