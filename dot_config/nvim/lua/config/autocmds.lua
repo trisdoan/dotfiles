@@ -24,3 +24,11 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.wo.conceallevel = 0
   end,
 })
+
+-- Treat kebab-case as one word where it's an identifier (CSS classes, XML ids)
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "css", "scss", "less", "html", "xml" },
+  callback = function()
+    vim.opt_local.iskeyword:append("-")
+  end,
+})
