@@ -86,3 +86,13 @@ export PNPM_HOME="$HOME/.local/share/pnpm"
 export BUN_INSTALL="$HOME/.bun"
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null && eval "$(pyenv init - bash)"
+
+# --------------------
+# Vi mode
+# --------------------
+set -o vi
+bind -m vi-insert '"\e[A": history-search-backward'
+bind -m vi-insert '"\e[B": history-search-forward'
+bind 'set show-mode-in-prompt on'
+bind 'set vi-ins-mode-string "\1\e[6 q\2"'
+bind 'set vi-cmd-mode-string "\1\e[2 q\2"'
